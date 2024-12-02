@@ -4,9 +4,9 @@ import kotlin.math.abs
 
 // https://adventofcode.com/2024/day/2
 
-fun countSafe(s: String, dampener: Boolean): Int =
+fun countSafe(s: String, damp: Boolean): Int =
     parse(s).count { report ->
-        isSafe(report) || (dampener && dampened(report).any { isSafe(it) })
+        isSafe(report) || (damp && dampened(report).any { isSafe(it) })
     }
 
 private fun dampened(report: List<Int>): Sequence<List<Int>> =
@@ -14,13 +14,13 @@ private fun dampened(report: List<Int>): Sequence<List<Int>> =
         .map { report.filterIndexed { i, _ -> i != it } }
 
 private fun isSafe(report: List<Int>): Boolean =
-    (isIncreasing(report) || isDecreasing(report)) && report.zipWithNext().all { (l, r) -> abs(l - r) <= 3 }
+    report.zipWithNext().let {
+        (it.all(Increasing) || it.all(Decreasing)) && it.all(MaxDiffer)
+    }
 
-private fun isIncreasing(report: List<Int>): Boolean =
-    report.zipWithNext().all { (l, r) -> l < r }
-
-private fun isDecreasing(report: List<Int>): Boolean =
-    report.zipWithNext().all { (l, r) -> l > r }
+private val Increasing: (Pair<Int, Int>) -> Boolean = { (l, r) -> l < r }
+private val Decreasing: (Pair<Int, Int>) -> Boolean = { (l, r) -> l > r }
+private val MaxDiffer: (Pair<Int, Int>) -> Boolean = { (l, r) -> abs(l - r) <= 3 }
 
 private fun parse(s: String): List<List<Int>> =
     s.lines().map { line ->
