@@ -19,12 +19,13 @@ private fun testCase(case: String): TestCase =
     try {
         object {}.javaClass.getResource("/private/$case")
             ?.readText(StandardCharsets.UTF_8)
-            ?.let {
-                // expected -> given
-                it.substringAfter("\n") to it.substringBefore("\n").toInt()
-            }
+            ?.let { it.given() to it.expected() }
             ?: throw IllegalStateException()
     } catch (ex: Exception) {
         assumeTrue(false)
         "" to 0 // irrelevant - failed assumption above will skip test
     }
+
+private fun String.given(): String = substringAfter("\n")
+
+private fun String.expected(): Int = substringBefore("\n").toInt()
