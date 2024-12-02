@@ -6,16 +6,12 @@ import kotlin.math.abs
 
 fun countSafe(s: String, dampener: Boolean): Int =
     parse(s).count { report ->
-        isSafe(report) || dampener && dampened(report).any { isSafe(it) }
+        isSafe(report) || (dampener && dampened(report).any { isSafe(it) })
     }
 
 private fun dampened(report: List<Int>): Sequence<List<Int>> =
     report.indices.asSequence()
-        .map {
-            val tmp = report.toMutableList()
-            tmp.removeAt(it)
-            tmp
-        }
+        .map { report.filterIndexed { i, _ -> i != it } }
 
 private fun isSafe(report: List<Int>): Boolean =
     (isIncreasing(report) || isDecreasing(report)) && report.zipWithNext().all { (l, r) -> abs(l - r) <= 3 }
