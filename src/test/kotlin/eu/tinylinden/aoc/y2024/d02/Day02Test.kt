@@ -1,17 +1,12 @@
 package eu.tinylinden.aoc.y2024.d02
 
-import eu.tinylinden.aoc.TestHelper
 import eu.tinylinden.aoc.Tested
-import org.junit.jupiter.api.Disabled
+import eu.tinylinden.aoc.runTest
 import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.Nested
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.Arguments.argumentSet
 import org.junit.jupiter.params.provider.MethodSource
-import strikt.api.expectThat
-import strikt.assertions.isEqualTo
 import java.util.stream.Stream
 
 @DisplayName("--- Day 2: Red-Nosed Reports ---")
@@ -20,9 +15,7 @@ internal class Day02Test {
     @ParameterizedTest
     @MethodSource("testCases")
     fun test(case: String, tested: Tested) {
-        TestHelper.testCase(case).let { (given, expected) ->
-            expectThat(tested(given)).isEqualTo(expected)
-        }
+        runTest(case, tested)
     }
 
     companion object {
