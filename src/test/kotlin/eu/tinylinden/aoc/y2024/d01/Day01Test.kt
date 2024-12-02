@@ -1,60 +1,34 @@
 package eu.tinylinden.aoc.y2024.d01
 
-import org.junit.jupiter.api.Disabled
+import eu.tinylinden.aoc.Tested
+import eu.tinylinden.aoc.TestHelper
 import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.Nested
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.Arguments.argumentSet
+import org.junit.jupiter.params.provider.MethodSource
 import strikt.api.expectThat
 import strikt.assertions.isEqualTo
+import java.util.stream.Stream
 
 @DisplayName("--- Day 1: Historian Hysteria ---")
 internal class Day01Test {
 
-    @Nested
-    @DisplayName("--- Part One ---")
-    inner class PartOne {
-
-        @Test
-        @DisplayName("example")
-        fun `test example`() {
-            expectThat(distance(example())).isEqualTo(11)
-        }
-
-        @Disabled
-        @Test
-        @DisplayName("puzzle")
-        fun `test puzzle`() {
-            expectThat(distance(puzzle())).isEqualTo(2430334)
+    @ParameterizedTest
+    @MethodSource("testCases")
+    fun test(case: String, tested: Tested) {
+        TestHelper.testCase(case).let { (given, expected) ->
+            expectThat(tested(given)).isEqualTo(expected)
         }
     }
 
-
-    @Nested
-    @DisplayName("--- Part Two ---")
-    inner class PartTwo {
-
-        @Test
-        @DisplayName("example")
-        fun `test example`() {
-            expectThat(similarity(example())).isEqualTo(31)
-        }
-
-        @Disabled
-        @Test
-        @DisplayName("puzzle")
-        fun `test puzzle`() {
-            expectThat(similarity(puzzle())).isEqualTo(28786472)
-        }
+    companion object {
+        @JvmStatic
+        fun testCases(): Stream<Arguments> = Stream.of(
+            argumentSet("Part One - example", "y2024d01p1-example", Tested { distance(it) }),
+            argumentSet("Part One - puzzle", "y2024d01p1-puzzle", Tested { distance(it) }),
+            argumentSet("Part Two - example", "y2024d01p2-example", Tested { similarity(it) }),
+            argumentSet("Part Two - puzzle", "y2024d01p2-puzzle", Tested { similarity(it) }),
+        )
     }
-
-    private fun example() = """
-        3   4
-        4   3
-        2   5
-        1   3
-        3   9
-        3   3
-    """.trimIndent()
-
-    private fun puzzle() = ""
 }

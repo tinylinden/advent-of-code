@@ -17,6 +17,7 @@ kotlin {
 dependencies {
     testImplementation(libs.strikt.core)
     testImplementation(libs.junit.jupiter.api)
+    testImplementation(libs.junit.jupiter.params)
 
     testRuntimeOnly(libs.junit.jupiter.engine)
 }
