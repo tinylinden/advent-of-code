@@ -27,4 +27,3 @@ input:
 		>> ${TEMP}/aoc-puzzle
 	cp ${TEMP}/aoc-puzzle ${DATA}/y$(y)d$(d)p1-puzzle
 	cp ${TEMP}/aoc-puzzle ${DATA}/y$(y)d$(d)p2-puzzle
-
