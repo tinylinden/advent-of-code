@@ -13,7 +13,7 @@ setup:
 
 	mkdir -p ${TEST}/y$(y)/d$(d)
 	cat ${TEST}/DayXXTest.kt \
-		| sed 's/DayXXTest/Day$(d)Test/;s/package eu.tinylinden.aoc/package eu.tinylinden.aoc.y$(y).d$(d)/' \
+		| sed 's/DayXXTest/Day$(d)Test/;1s/.*/package eu.tinylinden.aoc.y$(y).d$(d)/' \
 		> ${TEST}/y$(y)/d$(d)/Day$(d)Test.kt
 
 	touch ${DATA}/y$(y)d$(d)p1-example
