@@ -4,7 +4,7 @@ import kotlin.math.abs
 
 // https://adventofcode.com/2024/day/2
 
-fun countSafe(s: String, damp: Boolean): Int =
+fun redNosedReports(s: String, damp: Boolean): Int =
     parse(s).count { report ->
         isSafe(report) || (damp && dampened(report).any { isSafe(it) })
     }
