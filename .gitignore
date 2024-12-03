@@ -1,5 +1,6 @@
 src/test/resources/private/*
 
+.env
 .java-version
 
 .gradle

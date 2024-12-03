@@ -1,3 +1,5 @@
+include ./.env
+
 MAIN = ./src/main/kotlin/eu/tinylinden/aoc
 TEST = ./src/test/kotlin/eu/tinylinden/aoc
 DATA = ./src/test/resources/private
@@ -18,4 +20,11 @@ setup:
 	touch ${DATA}/y$(y)d$(d)p1-puzzle
 	touch ${DATA}/y$(y)d$(d)p2-example
 	touch ${DATA}/y$(y)d$(d)p2-puzzle
+
+input:
+	echo "0" > ${TEMP}/aoc-puzzle
+	curl --silent --cookie "session=${SESSION}" $(subst /0,/,https://adventofcode.com/$(y)/day/$(d)/input) \
+		>> ${TEMP}/aoc-puzzle
+	cp ${TEMP}/aoc-puzzle ${DATA}/y$(y)d$(d)p1-puzzle
+	cp ${TEMP}/aoc-puzzle ${DATA}/y$(y)d$(d)p2-puzzle
 

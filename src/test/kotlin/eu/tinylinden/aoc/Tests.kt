@@ -39,6 +39,6 @@ private fun testCase(case: String): TestCase =
         "" to 0 // irrelevant - failed assumption above will skip test
     }
 
-private fun String.given(): String = substringAfter("\n")
+private fun String.given(): String = substringAfter("\n").trimEnd()
 
 private fun String.expected(): Int = substringBefore("\n").toInt()
