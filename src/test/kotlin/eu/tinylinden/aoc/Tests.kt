@@ -1,7 +1,6 @@
 package eu.tinylinden.aoc
 
 import org.junit.jupiter.api.Assumptions.assumeTrue
-import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.Arguments.argumentSet
 import strikt.api.expectThat
 import strikt.assertions.isEqualTo
@@ -17,16 +16,16 @@ internal fun runTest(case: String, tested: Tested) {
     }
 }
 
-internal fun exampleOne(y: String, d: String, tested: Tested) =
+internal fun eOne(y: String, d: String, tested: Tested) =
     argumentSet("Part One - example", "y${y}d${d}p1-example", tested)
 
-internal fun puzzleOne(y: String, d: String, tested: Tested) =
+internal fun pOne(y: String, d: String, tested: Tested) =
     argumentSet("Part One - puzzle", "y${y}d${d}p1-puzzle", tested)
 
-internal fun exampleTwo(y: String, d: String, tested: Tested) =
+internal fun eTwo(y: String, d: String, tested: Tested) =
     argumentSet("Part Two - example", "y${y}d${d}p2-example", tested)
 
-internal fun puzzleTwo(y: String, d: String, tested: Tested) =
+internal fun pTwo(y: String, d: String, tested: Tested) =
     argumentSet("Part Two - puzzle", "y${y}d${d}p2-puzzle", tested)
 
 private fun testCase(case: String): TestCase =

@@ -2,9 +2,9 @@ package eu.tinylinden.aoc.y2024.d02
 
 import eu.tinylinden.aoc.*
 import eu.tinylinden.aoc.Tested
-import eu.tinylinden.aoc.exampleOne
-import eu.tinylinden.aoc.exampleTwo
-import eu.tinylinden.aoc.puzzleOne
+import eu.tinylinden.aoc.eOne
+import eu.tinylinden.aoc.eTwo
+import eu.tinylinden.aoc.pOne
 import eu.tinylinden.aoc.runTest
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
@@ -24,10 +24,10 @@ internal class Day02Test {
     companion object {
         @JvmStatic
         fun testCases(): Stream<Arguments> = Stream.of(
-            exampleOne("2024", "02") { redNosedReports(it, false) },
-            puzzleOne("2024", "02") { redNosedReports(it, false) },
-            exampleTwo("2024", "02") { redNosedReports(it, true) },
-            puzzleTwo("2024", "02") { redNosedReports(it, true) },
+            eOne("2024", "02") { redNosedReports(it, false) },
+            pOne("2024", "02") { redNosedReports(it, false) },
+            eTwo("2024", "02") { redNosedReports(it, true) },
+            pTwo("2024", "02") { redNosedReports(it, true) },
         )
     }
 }

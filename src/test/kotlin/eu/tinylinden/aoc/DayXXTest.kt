@@ -1,14 +1,15 @@
-package eu.tinylinden.aoc.y2024.d03
+package eu.tinylinden.aoc
 
-import eu.tinylinden.aoc.*
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import java.util.stream.Stream
 
-@DisplayName("--- Day 3, 2024: Mull It Over ---")
-internal class Day03Test {
+@Disabled
+@DisplayName("")
+internal class DayXXTest {
 
     @ParameterizedTest
     @MethodSource("testCases")
@@ -19,10 +20,10 @@ internal class Day03Test {
     companion object {
         @JvmStatic
         fun testCases(): Stream<Arguments> = Stream.of(
-            eOne("2024", "03") { mullItOver(it, false) },
-            pOne("2024", "03") { mullItOver(it, false) },
-            eTwo("2024", "03") { mullItOver(it, true) },
-            pTwo("2024", "03") { mullItOver(it, true) },
+            eOne("", "") { 0 },
+            pOne("", "") { 0 },
+            eTwo("", "") { 0 },
+            pTwo("", "") { 0 },
         )
     }
 }
