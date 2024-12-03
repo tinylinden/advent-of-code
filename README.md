@@ -1,6 +1,6 @@
 # Advent of Code
 
-![aoc.jpg](aoc.jpg)
+[![aoc.jpg](aoc.jpg)](https://unsplash.com/photos/ySNkCkdKyTY)
 
 [![stability: experimental](https://masterminds.github.io/stability/experimental.svg)](https://masterminds.github.io/stability/experimental.html)
 
@@ -12,11 +12,12 @@
 
 ### Notes for future me
 
-In [Advent of Code / About](https://adventofcode.com/about) author(s) asks for
-not to share puzzle texts or inputs anywhere. Wanting to comply with that request 
+[Advent of Code / About](https://adventofcode.com/about) asks not to share 
+puzzle texts or inputs anywhere. Wanting to comply with that request 
 all puzzle inputs are taken from `src/test/resources/private` directory. 
 
-Scaffolding for given day can be initialized with `make setup YYYY DD` (e.g, day 1, 2024 - `make setup 2024 01`).
+Scaffolding for given day can be initialized with `make setup YYYY DD` (e.g,
+day 1, 2024 - `make setup 2024 01`).
 
 Puzzle input for given day can be fetched with `make input YYYY DD` (e.g.,
 day 1, 2024 - `make input 2024 01`). This will only work if following variables
@@ -25,3 +26,4 @@ are specified in `.env` file:
   - `TEMP` - temporary directory,
   - `SESSION` - session identifier (stored as cookie named `session` after
      [Advent of Code / Log In](https://adventofcode.com/auth/login)).
+
