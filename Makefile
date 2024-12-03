@@ -1,0 +1,21 @@
+MAIN = ./src/main/kotlin/eu/tinylinden/aoc
+TEST = ./src/test/kotlin/eu/tinylinden/aoc
+DATA = ./src/test/resources/private
+
+test:
+	./gradlew clean test -Dtestlogger.theme=mocha
+
+setup:
+	mkdir -p ${MAIN}/y$(y)/d$(d)
+	echo "package eu.tinylinden.aoc.y$(y).d$(d)\n" > ${MAIN}/y$(y)/d$(d)/Day$(d).kt
+
+	mkdir -p ${TEST}/y$(y)/d$(d)
+	cat ${TEST}/DayXXTest.kt \
+		| sed 's/DayXXTest/Day$(d)Test/;s/package eu.tinylinden.aoc/package eu.tinylinden.aoc.y$(y).d$(d)/' \
+		> ${TEST}/y$(y)/d$(d)/Day$(d)Test.kt
+
+	touch ${DATA}/y$(y)d$(d)p1-example
+	touch ${DATA}/y$(y)d$(d)p1-puzzle
+	touch ${DATA}/y$(y)d$(d)p2-example
+	touch ${DATA}/y$(y)d$(d)p2-puzzle
+

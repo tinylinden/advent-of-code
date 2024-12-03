@@ -1,5 +1,6 @@
 package eu.tinylinden.aoc
 
+import eu.tinylinden.aoc.*
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
