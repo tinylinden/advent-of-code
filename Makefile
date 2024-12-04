@@ -19,7 +19,7 @@ scaffold:
 		| sed 's/DayXXTest/Day$(d)Test/;1s/.*/package eu.tinylinden.aoc.y$(y).d$(d)/' \
 		> $(TEST)/y$(y)/d$(d)/Day$(d)Test.kt
 
-	touch $(DATA)/y$(y)d$(d)p(1,2)-(example,puzzle)
+	touch $(DATA)/y$(y)d$(d)p{1,2}-{example,puzzle}
 
 # env   : TEMP, SESSION
 # params: y=YYYY d=DD

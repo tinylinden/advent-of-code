@@ -10,6 +10,8 @@
    [⭐⭐](./src/main/kotlin/eu/tinylinden/aoc/y2024/d02/Day02.kt)
 3. [Mull It Over](https://adventofcode.com/2024/day/3)
    [⭐⭐](./src/main/kotlin/eu/tinylinden/aoc/y2024/d03/Day03.kt)
+4. [Ceres Search](https://adventofcode.com/2024/day/4)
+   [⭐⭐](./src/main/kotlin/eu/tinylinden/aoc/y2024/d04/Day04.kt)
 
 ### Notes for future me
 
