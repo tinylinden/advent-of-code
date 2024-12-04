@@ -44,21 +44,21 @@ src/test/resources/private/y2024d01p1-puzzle
 src/test/resources/private/y2024d01p2-puzzle
 ```
 
-Test case file format supported by current implementation is:
+Test case file format supported by current implementation:
 
 ```
 EXPECTED RESULT
-PUZZLE INPUT LINE 1
-PUZZLE INPUT LINE 2
+PUZZLE
+LINES
 ...
-PUZZLE INPUT LINE N
 ```
 
 Example test cases should be populated by copying them manually from
-AoC. And puzzle ones for given day can be fetched auto-magically with
-`make fetch-puzzle y=YYYY d=DD` (e.g., `make fetch-puzzle y=2024 d=01`).
-This will only work if following variables are specified in `.env` file:
+AoC. Puzzle ones for given day can be fetched auto-magically with
+`make fetch-puzzle y=YYYY d=DD`. This will only work if following 
+variables are specified in `.env` file:
 
 - `TEMP` - temporary directory,
 - `SESSION` - session identifier (stored as cookie named `session` after
   [Advent of Code / Log In](https://adventofcode.com/auth/login)).
+
