@@ -23,18 +23,18 @@ scaffold:
 
 # env   : TEMP, SESSION
 # params: y=YYYY d=DD
-fetch-input:
-	echo "0" > $(TEMP)/aoc-puzzle
+fetch-puzzle:
+	echo "-1" > $(TEMP)/aoc-puzzle
 	curl --silent --cookie "session=$(SESSION)" $(subst /0,/,https://adventofcode.com/$(y)/day/$(d)/input) \
 		>> $(TEMP)/aoc-puzzle
 	cp $(TEMP)/aoc-puzzle $(DATA)/y$(y)d$(d)p1-puzzle
 	cp $(TEMP)/aoc-puzzle $(DATA)/y$(y)d$(d)p2-puzzle
 
 # params: y=YYYY d=DD r=...
-expected-one:
+solve-one:
 	sed -i '1s/.*/$(r)/' $(DATA)/y$(y)d$(d)p1-puzzle
 
 # params: y=YYYY d=DD r=...
-expected-two:
+solve-two:
 	sed -i '1s/.*/$(r)/' $(DATA)/y$(y)d$(d)p2-puzzle
 

@@ -25,12 +25,39 @@ Score: 8/50 ⭐
 puzzle texts or inputs anywhere. Wanting to comply with that request
 all puzzle inputs are kept in `src/test/resources/private` directory.
 
-Scaffolding for given day can be initialized with `make scaffold y=YYYY d=DD`
-(e.g., day 1, 2024 - `make scaffold y=2024 d=01`).
+I don't intend to enter the race for a place in the top 100, but manually 
+configuring resources for individual puzzles can be tedious. Scaffolding 
+for given day can be initialized with `make scaffold y=YYYY d=DD`.
+For example `make scaffold y=2024 d=01`, will create:
 
-Puzzle input for given day can be fetched with `make fetch-input y=YYYY d=DD`
-(e.g., day 1, 2024 - `make fetch-input y=2024 d=01`). This will only work if
-following variables are specified in `.env` file:
+```
+// (1) empty solution
+src/main/**/y2024/d01/Day01.kt
+
+// (2) disabled test
+src/test/**/y2024/d01/Day01Test.kt
+
+// (3) empty test cases
+src/test/resources/private/y2024d01p1-example
+src/test/resources/private/y2024d01p2-example
+src/test/resources/private/y2024d01p1-puzzle
+src/test/resources/private/y2024d01p2-puzzle
+```
+
+Test case file format supported by current implementation is:
+
+```
+EXPECTED RESULT
+PUZZLE INPUT LINE 1
+PUZZLE INPUT LINE 2
+...
+PUZZLE INPUT LINE N
+```
+
+Example test cases should be populated by copying them manually from
+AoC. And puzzle ones for given day can be fetched auto-magically with
+`make fetch-puzzle y=YYYY d=DD` (e.g., `make fetch-puzzle y=2024 d=01`).
+This will only work if following variables are specified in `.env` file:
 
 - `TEMP` - temporary directory,
 - `SESSION` - session identifier (stored as cookie named `session` after
