@@ -2,29 +2,25 @@ package eu.tinylinden.aoc.y2024.d04
 
 // https://adventofcode.com/2024/day/4
 
-fun ceresSearchOne(input: String): Int {
-    val grid = grid(input)
-    val vectors = cardinal + diagonal
-    return grid.filterValues { it == 'X' }
-        .keys
-        .flatMap { loc -> vectors.map { word(grid, loc, 4, it) } }
-        .count { string(it) == "XMAS" }
-}
+fun ceresSearchOne(input: String): Int =
+    ceresSearch(grid(input), "XMAS", cardinal + diagonal)
+        .count()
 
-fun ceresSearchTwo(input: String): Int {
-    val grid = grid(input)
-    return grid.filterValues { it == 'M' }
-        .keys
-        .flatMap { loc -> diagonal.map { word(grid, loc, 3, it) } }
-        .filter { string(it) == "MAS" }
-        .groupBy { loc(it, 1) }
+fun ceresSearchTwo(input: String): Int =
+    ceresSearch(grid(input), "MAS", diagonal)
+        .groupBy { loc(it, 1) } // by 2nd letter's location
         .count { (_, v) -> v.size == 2 }
-}
+
+private fun ceresSearch(grid: Grid, phrase: String, vectors: List<Vec>): Words =
+    grid.filterValues { it == phrase.first() }
+        .keys
+        .flatMap { loc -> vectors.map { word(grid, loc, phrase.length, it) } }
+        .filter { string(it) == phrase }
 
 private fun grid(input: String): Grid =
-    input.lines().flatMapIndexed { row, line ->
-        line.mapIndexed { col, char -> (row to col) to char }
-    }.toMap()
+    input.lines()
+        .flatMapIndexed { row, line -> line.mapIndexed { col, char -> (row to col) to char } }
+        .toMap()
 
 private fun word(grid: Grid, start: Loc, len: Int, vec: Vec): Word =
     generateSequence(start) { it + vec }
@@ -63,3 +59,4 @@ private typealias Vec = Pair<Int, Int>
 private typealias Grid = Map<Loc, Char>
 private typealias Letter = Pair<Loc, Char>
 private typealias Word = List<Letter>
+private typealias Words = List<Word>
