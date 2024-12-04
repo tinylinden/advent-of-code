@@ -48,9 +48,9 @@ Test case file format supported by current implementation:
 
 ```
 EXPECTED RESULT
-PUZZLE
-LINES
-...
+ALL...
+...PUZZLE...
+...LINES
 ```
 
 Example test cases should be populated by copying them manually from
