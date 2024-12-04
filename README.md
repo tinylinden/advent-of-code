@@ -2,6 +2,8 @@
 
 [![aoc.jpg](aoc.jpg)](https://unsplash.com/photos/ySNkCkdKyTY)
 
+<sub>Photo by [Rodion Kutsaiev](https://unsplash.com/@frostroomhead) on [Unsplash](https://unsplash.com/)</sub>
+
 This repo is my personal attempt at solving [Advent of Code](https://adventofcode.com/)
 puzzles with Kotlin programming language.
 
