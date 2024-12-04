@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.MethodSource
 import java.util.stream.Stream
 
 @Disabled
-@DisplayName("")
+@DisplayName("--- SET ME ---")
 internal class DayXXTest {
 
     @ParameterizedTest

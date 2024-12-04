@@ -17,7 +17,7 @@ fun ceresSearchTwo(input: String): Int {
         .keys
         .flatMap { loc -> diagonal.map { word(grid, loc, 3, it) } }
         .filter { string(it) == "MAS" }
-        .groupBy { it[1].first } // location of second letter
+        .groupBy { loc(it, 1) }
         .count { (_, v) -> v.size == 2 }
 }
 
@@ -38,8 +38,11 @@ private fun string(word: Word): String =
 private fun letter(grid: Grid, loc: Loc): Letter =
     grid[loc]?.let { loc to it } ?: (loc to '.')
 
-private operator fun Loc.plus(other: Loc): Loc =
-    (first + other.first) to (second + other.second)
+private operator fun Loc.plus(vec: Vec): Loc =
+    (first + vec.first) to (second + vec.second)
+
+private fun loc(word: Word, index: Int): Loc =
+    word[index].first
 
 private val cardinal = listOf(
     1 to 0,   // right
@@ -56,7 +59,7 @@ private val diagonal = listOf(
 )
 
 private typealias Loc = Pair<Int, Int>
-private typealias Vec = Loc
+private typealias Vec = Pair<Int, Int>
 private typealias Grid = Map<Loc, Char>
 private typealias Letter = Pair<Loc, Char>
 private typealias Word = List<Letter>
