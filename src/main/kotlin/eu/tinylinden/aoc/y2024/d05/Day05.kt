@@ -3,9 +3,11 @@ package eu.tinylinden.aoc.y2024.d05
 // https://adventofcode.com/2024/day/5
 
 fun printQueueOne(input: String): Int =
-    updates(input)
-        .filter { isInOrder(it, rules(input)) }
-        .sumOf { it[it.size / 2] }
+    rules(input).let { rules ->
+        updates(input)
+            .filter { isInOrder(it, rules) }
+            .sumOf { it[it.size / 2] }
+    }
 
 fun printQueueTwo(input: String): Int =
     rules(input).let { rules ->
@@ -30,13 +32,9 @@ private fun isInOrder(pages: List<Int>, rules: Rules): Boolean =
 private fun isInOrder(page: Int, rest: List<Int>, rules: Rules): Boolean =
     when {
         rest.isEmpty() -> true
-        intersect(rules[page], rest) -> false
+        rules[page]?.intersect(rest.toSet())?.isNotEmpty() == true -> false
         else -> isInOrder(rest.first(), rest.drop(1), rules)
     }
-
-// better name, please
-private fun intersect(left: Set<Int>?, right: List<Int>): Boolean =
-    left?.intersect(right.toSet())?.isNotEmpty() == true
 
 private fun rules(input: String): Rules {
     val buffer = mutableMapOf<Int, MutableSet<Int>>()
