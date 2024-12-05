@@ -3,6 +3,9 @@
 [![aoc.jpg](banner.jpg)](https://unsplash.com/photos/ySNkCkdKyTY)  
 <sub>Photo by [Rodion Kutsaiev](https://unsplash.com/@frostroomhead) on [Unsplash](https://unsplash.com/)</sub>
 
+[![stability: experimental](https://masterminds.github.io/stability/experimental.svg)](https://masterminds.github.io/stability/experimental.html)
+[![build](https://github.com/tinylinden/advent-of-code/actions/workflows/gradle.yml/badge.svg)](https://github.com/tinylinden/advent-of-code/actions/workflows/gradle.yml)
+
 This repo is my personal attempt at solving [Advent of Code](https://adventofcode.com/)
 puzzles with Kotlin programming language. An additional constraint
 I impose on myself is to limit to what standard Kotlin library
