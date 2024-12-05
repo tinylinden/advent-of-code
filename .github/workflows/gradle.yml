@@ -34,6 +34,7 @@ jobs:
       - env:
           SESSION: ${{ secrets.SESSION }}
         run: |
+          touch .env
           make prepare y=2024 d=01
       - run: ./gradlew check
       - uses: scacap/action-surefire-report@v1
