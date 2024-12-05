@@ -2,6 +2,7 @@ package eu.tinylinden.aoc.y2024.d05
 
 import eu.tinylinden.aoc.base.parseLists
 import eu.tinylinden.aoc.base.parsePairs
+import eu.tinylinden.aoc.base.rest
 
 // https://adventofcode.com/2024/day/5
 
@@ -20,30 +21,34 @@ fun printQueueTwo(input: String): Int =
             .sumOf { it[it.size / 2] }
     }
 
-private fun fixOrder(update: List<Int>, rules: Rules): List<Int> =
-    update.sortedWith { l, r ->
-        when (rules[r]?.contains(l)) {
-            true -> -1
-            else -> 0
+private fun fixOrder(pages: Pages, rules: Rules): Pages =
+    pages.sortedWith { l, r ->
+        if (rules.contains(l to r)) -1 else 0
+    }
+
+private fun isInOrder(pages: Pages, rules: Rules): Boolean {
+    fun options(page: Int, rest: Pages): Set<Option> =
+        rest.map { page to it }.toSet()
+
+    fun check(page: Int, rest: Pages): Boolean =
+        when {
+            rest.isEmpty() -> true
+            (rules intersect options(page, rest)).isNotEmpty() -> false
+            else -> check(rest.first(), rest.rest())
         }
-    }
 
-private fun isInOrder(pages: List<Int>, rules: Rules): Boolean {
-    fun check(page: Int, rest: List<Int>): Boolean = when {
-        rest.isEmpty() -> true
-        rules[page]?.intersect(rest)?.isNotEmpty() == true -> false
-        else -> check(rest.first(), rest.drop(1))
-    }
-
-    return check(pages.first(), pages.drop(1))
+    return check(pages.first(), pages.rest())
 }
 
 private fun rules(input: String): Rules =
     parsePairs(input, Regex("\\d+\\|\\d+"), '|') { it.toInt() }
-        .groupBy({ it.second }, { it.first })
+        .map { (l, r) -> r to l }
+        .toSet()
 
 private fun updates(input: String): Updates =
     parseLists(input, Regex("[\\d,]+"), ',') { it.toInt() }
 
-private typealias Updates = List<List<Int>>
-private typealias Rules = Map<Int, List<Int>> // page -> after all of
+private typealias Pages = List<Int>
+private typealias Updates = List<Pages>
+private typealias Option = Pair<Int, Int>
+private typealias Rules = Set<Option> // illegal options
