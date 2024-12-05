@@ -1,5 +1,8 @@
 package eu.tinylinden.aoc.y2024.d05
 
+import eu.tinylinden.aoc.base.parseLists
+import eu.tinylinden.aoc.base.parsePairs
+
 // https://adventofcode.com/2024/day/5
 
 fun printQueueOne(input: String): Int =
@@ -25,31 +28,22 @@ private fun fixOrder(update: List<Int>, rules: Rules): List<Int> =
         }
     }
 
-private fun isInOrder(pages: List<Int>, rules: Rules): Boolean =
-    isInOrder(pages.first(), pages.drop(1), rules)
-
-private fun isInOrder(page: Int, rest: List<Int>, rules: Rules): Boolean =
-    when {
+private fun isInOrder(pages: List<Int>, rules: Rules): Boolean {
+    fun check(page: Int, rest: List<Int>): Boolean = when {
         rest.isEmpty() -> true
         rules[page]?.intersect(rest)?.isNotEmpty() == true -> false
-        else -> isInOrder(rest.first(), rest.drop(1), rules)
+        else -> check(rest.first(), rest.drop(1))
     }
 
-private fun rules(input: String): Rules {
-    val buffer = mutableMapOf<Int, MutableSet<Int>>()
-    input.lines().filter { it.contains('|') }
-        .map { it.substringBefore('|').toInt() to it.substringAfter('|').toInt() }
-        .forEach { (before, after) ->
-            buffer.getOrPut(after) { mutableSetOf() } += before
-        }
-    return buffer
+    return check(pages.first(), pages.drop(1))
 }
 
+private fun rules(input: String): Rules =
+    parsePairs(input, Regex("\\d+\\|\\d+"), '|') { it.toInt() }
+        .groupBy({ it.second }, { it.first })
+
 private fun updates(input: String): Updates =
-    input.lines().filter { it.contains(',') }
-        .map { line ->
-            line.split(',').map { it.toInt() }
-        }
+    parseLists(input, Regex("[\\d,]+"), ',') { it.toInt() }
 
 private typealias Updates = List<List<Int>>
-private typealias Rules = Map<Int, Set<Int>> // page -> after all of
+private typealias Rules = Map<Int, List<Int>> // page -> after all of
