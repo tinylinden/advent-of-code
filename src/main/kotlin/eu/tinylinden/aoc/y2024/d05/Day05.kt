@@ -1,5 +1,6 @@
 package eu.tinylinden.aoc.y2024.d05
 
+import eu.tinylinden.aoc.base.middle
 import eu.tinylinden.aoc.base.parseLists
 import eu.tinylinden.aoc.base.parsePairs
 import eu.tinylinden.aoc.base.rest
@@ -10,7 +11,7 @@ fun printQueueOne(input: String): Int =
     rules(input).let { rules ->
         updates(input)
             .filter { isInOrder(it, rules) }
-            .sumOf { it[it.size / 2] }
+            .sumOf { it.middle() }
     }
 
 fun printQueueTwo(input: String): Int =
@@ -18,12 +19,7 @@ fun printQueueTwo(input: String): Int =
         updates(input)
             .filterNot { isInOrder(it, rules) }
             .map { fixOrder(it, rules) }
-            .sumOf { it[it.size / 2] }
-    }
-
-private fun fixOrder(pages: Pages, rules: Rules): Pages =
-    pages.sortedWith { l, r ->
-        if (rules.contains(l to r)) -1 else 0
+            .sumOf { it.middle() }
     }
 
 private fun isInOrder(pages: Pages, rules: Rules): Boolean {
@@ -39,6 +35,11 @@ private fun isInOrder(pages: Pages, rules: Rules): Boolean {
 
     return check(pages.first(), pages.rest())
 }
+
+private fun fixOrder(pages: Pages, rules: Rules): Pages =
+    pages.sortedWith { l, r ->
+        if (rules.contains(l to r)) -1 else 0
+    }
 
 private fun rules(input: String): Rules =
     parsePairs(input, Regex("\\d+\\|\\d+"), '|') { it.toInt() }
