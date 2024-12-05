@@ -33,6 +33,7 @@ jobs:
             ${{ runner.os }}-gradle-
       - env:
           SESSION: ${{ secrets.SESSION }}
+          TEMP: /tmp
         run: |
           touch .env
           make prepare y=2024 d=01
