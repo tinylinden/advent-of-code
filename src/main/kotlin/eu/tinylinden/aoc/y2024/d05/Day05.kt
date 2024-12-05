@@ -19,9 +19,8 @@ fun printQueueTwo(input: String): Int =
 
 private fun fixOrder(update: List<Int>, rules: Rules): List<Int> =
     update.sortedWith { l, r ->
-        when {
-            rules[l]?.contains(r) == true -> 1
-            rules[r]?.contains(l) == true -> -1
+        when (rules[r]?.contains(l)) {
+            true -> -1
             else -> 0
         }
     }
@@ -32,7 +31,7 @@ private fun isInOrder(pages: List<Int>, rules: Rules): Boolean =
 private fun isInOrder(page: Int, rest: List<Int>, rules: Rules): Boolean =
     when {
         rest.isEmpty() -> true
-        rules[page]?.intersect(rest.toSet())?.isNotEmpty() == true -> false
+        rules[page]?.intersect(rest)?.isNotEmpty() == true -> false
         else -> isInOrder(rest.first(), rest.drop(1), rules)
     }
 
