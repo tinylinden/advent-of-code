@@ -24,7 +24,7 @@ Score: 12/50 :star:
 |  3  | [Mull It Over](https://adventofcode.com/2024/day/3)       | [:white_check_mark:](./src/main/kotlin/eu/tinylinden/aoc/y2024/d03/Day03.kt) |
 |  4  | [Ceres Search](https://adventofcode.com/2024/day/4)       | [:white_check_mark:](./src/main/kotlin/eu/tinylinden/aoc/y2024/d04/Day04.kt) |
 |  5  | [Print Queue](https://adventofcode.com/2024/day/5)        | [:white_check_mark:](./src/main/kotlin/eu/tinylinden/aoc/y2024/d05/Day05.kt) |
-|  6  | [Guard Gallivant](https://adventofcode.com/2024/day/6)    |      [:snail:](./src/main/kotlin/eu/tinylinden/aoc/y2024/d06/Day06.kt)       |
+|  6  | [Guard Gallivant](https://adventofcode.com/2024/day/6)    | [:white_check_mark:](./src/main/kotlin/eu/tinylinden/aoc/y2024/d06/Day06.kt) |
 
 ## Notes for future me
 

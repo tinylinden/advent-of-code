@@ -7,28 +7,29 @@ fun guardGallivantOne(input: String): Int =
 
 fun guardGallivantTwo(input: String): Int {
     val original = charGrid(input) { throw IndexOutOfBoundsException() }
-    return original.points('.')
-        .parallelStream()
-        .filter {
-            try {
-                // there must be a better and faster way of loop detection
-                Guard(original.mutated(it to '#')).patrol()
-                false
-            } catch (ex: IllegalStateException) {
-                true
-            }
+    val start = original.point('^')
+
+    fun partial(point: Point): Int =
+        try {
+            Guard(original.mutated(point to '#'), start).patrol()
+            0
+        } catch (ex: IllegalStateException) {
+            1
         }
-        .count()
-        .toInt()
+
+    return (Guard(original, start).patrol().visited - start)
+        .parallelStream()
+        .reduce(0, { acc, p -> acc + partial(p) }, { l, r -> l + r })
 }
 
 private class Guard(
-    private val grid: CharGrid
+    private val grid: CharGrid,
+    start: Point = grid.point('^')
 ) {
-    private var location: Point = grid.point('^')
+    private var location: Point = start
     private var heading: CardinalDirection = CardinalDirection.UP
 
-    val visited: MutableSet<Point> = mutableSetOf(location)
+    val visited: MutableSet<Point> = mutableSetOf(start)
     private val obstacles: MutableSet<Pair<Point, Point>> = mutableSetOf()
 
     fun patrol(): Guard {
