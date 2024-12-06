@@ -4,7 +4,7 @@ typealias Word = List<CharCell>
 
 fun word(grid: CharGrid, start: Point, length: Int, direction: Direction): Word =
     generateSequence(start) { next(it, direction) }
-        .map { grid.charCell(it) }
+        .map { grid.cell(it) }
         .take(length)
         .toList()
 

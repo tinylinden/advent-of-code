@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import java.util.stream.Stream
 
-@DisplayName("--- Day 6: Guard Gallivant ---")
+@DisplayName("--- Day 6, 2024: Guard Gallivant ---")
 internal class Day06Test {
 
     @ParameterizedTest
