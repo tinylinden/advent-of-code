@@ -44,12 +44,10 @@ For example `make scaffold y=2024 d=01` will create:
    ```
    src/main/**/y2024/d01/Day01.kt
    ```
-3. Empty test case files
+3. Empty test case files for examples
    ```
    src/test/resources/private/y2024d01p1-example
    src/test/resources/private/y2024d01p2-example
-   src/test/resources/private/y2024d01p1-puzzle
-   src/test/resources/private/y2024d01p2-puzzle
    ```
 
 Test case file format supported by current implementation:
