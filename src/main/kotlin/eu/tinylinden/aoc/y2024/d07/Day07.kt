@@ -3,42 +3,29 @@ package eu.tinylinden.aoc.y2024.d07
 import eu.tinylinden.aoc.base.parseLists
 import eu.tinylinden.aoc.base.prepend
 import eu.tinylinden.aoc.base.rest
-import kotlin.math.pow
 
-fun bridgeRepairOne(input: String): Long {
-    fun possible(expected: Long, items: Items): Boolean =
-        operations(items.size - 1)
-            .any { expected == eval(items, it) }
-
-    return parse(input)
-        .filter { possible(it.first(), it.rest()) }
+fun bridgeRepairOne(input: String): Long =
+    parse(input)
+        .filter { check(it.first(), it.rest(), listOf(Add, Mul)) }
         .sumOf { it.first() }
-}
 
 fun bridgeRepairTwo(input: String): Long =
-    0
+    parse(input)
+        .filter { check(it.first(), it.rest(), listOf(Add, Mul, Con)) }
+        .sumOf { it.first() }
 
-private fun eval(items: Items, ops: Operations): Long {
-    val part = if (ops.first() == '0') { // 0 -> +
-        items[0] + items[1]
-    } else { // 1 -> *
-        items[0] * items[1]
+private typealias Op = (Long, Long) -> Long
+
+private val Add: Op = { l, r -> l + r }
+private val Mul: Op = { l, r -> l * r }
+private val Con: Op = { l, r -> "$l$r".toLong() }
+
+private fun check(expected: Long, items: List<Long>, ops: List<Op>): Boolean =
+    when {
+        items.size == 1 -> expected == items[0]
+        expected < items[0] -> false
+        else -> ops.any { check(expected, items.drop(2).prepend(it(items[0], items[1])), ops) }
     }
-
-    return if (items.size == 2) {
-        part
-    } else {
-        eval(items.drop(2).prepend(part), ops.drop(1))
-    }
-}
-
-private fun operations(n: Int): Sequence<Operations> =
-    generateSequence(0) { it + 1 }
-        .map { it.toString(2).padStart(n, '0') }
-        .take(2.0.pow(n).toInt())
 
 private fun parse(input: String): List<List<Long>> =
     parseLists(input.replace(":", ""), Regex(".*"), ' ') { it.toLong() }
-
-private typealias Items = List<Long>
-private typealias Operations = String
