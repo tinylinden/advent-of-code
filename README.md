@@ -7,9 +7,7 @@
 [![build](https://github.com/tinylinden/advent-of-code/actions/workflows/gradle.yml/badge.svg)](https://github.com/tinylinden/advent-of-code/actions/workflows/gradle.yml)
 
 This repo is my personal attempt at solving [Advent of Code](https://adventofcode.com/)
-puzzles with Kotlin programming language. An additional constraint
-I impose on myself is to limit to what standard Kotlin library
-provides. Let's see what comes out of this.
+puzzles with Kotlin programming language. Let's see what comes out of this.
 
 ## Events
 
@@ -23,7 +21,8 @@ provides. Let's see what comes out of this.
 |  4  | [Ceres Search](https://adventofcode.com/2024/day/4)       | [2/2](./src/main/kotlin/eu/tinylinden/aoc/y2024/d04/Day04.kt) |
 |  5  | [Print Queue](https://adventofcode.com/2024/day/5)        | [2/2](./src/main/kotlin/eu/tinylinden/aoc/y2024/d05/Day05.kt) |
 |  6  | [Guard Gallivant](https://adventofcode.com/2024/day/6)    | [2/2](./src/main/kotlin/eu/tinylinden/aoc/y2024/d06/Day06.kt) |
-|     |                                                           |                             12/50                             |
+|  7  | [Bridge Repair](https://adventofcode.com/2024/day/7)      | [2/2](./src/main/kotlin/eu/tinylinden/aoc/y2024/d07/Day07.kt) |
+|     |                                                           |                             14/50                             |
 
 ## Notes for future me
 

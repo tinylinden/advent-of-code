@@ -46,8 +46,9 @@ jobs:
           make prepare y=2024 d=04
           make prepare y=2024 d=05
           make prepare y=2024 d=06
+          make prepare y=2024 d=07
       - name: build-and-test
-        run: ./gradlew check
+        run: ./gradlew check -Dtestlogger.theme=plain
       - name: test-report
         uses: scacap/action-surefire-report@v1
         if: success() || failure()

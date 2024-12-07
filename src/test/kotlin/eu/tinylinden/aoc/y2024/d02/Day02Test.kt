@@ -24,10 +24,10 @@ internal class Day02Test {
     companion object {
         @JvmStatic
         fun testCases(): Stream<Arguments> = Stream.of(
-            eOne("2024", "02") { redNosedReports(it, false) },
-            pOne("2024", "02") { redNosedReports(it, false) },
-            eTwo("2024", "02") { redNosedReports(it, true) },
-            pTwo("2024", "02") { redNosedReports(it, true) },
+            eOne("2024", "02") { redNosedReports(it, false).toLong() },
+            pOne("2024", "02") { redNosedReports(it, false).toLong() },
+            eTwo("2024", "02") { redNosedReports(it, true).toLong() },
+            pTwo("2024", "02") { redNosedReports(it, true).toLong() },
         )
     }
 }

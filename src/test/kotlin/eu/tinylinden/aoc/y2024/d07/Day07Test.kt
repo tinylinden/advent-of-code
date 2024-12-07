@@ -1,4 +1,4 @@
-package eu.tinylinden.aoc.y2024.d05
+package eu.tinylinden.aoc.y2024.d07
 
 import eu.tinylinden.aoc.*
 import org.junit.jupiter.api.DisplayName
@@ -7,8 +7,8 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import java.util.stream.Stream
 
-@DisplayName("--- Day 5, 2024: Print Queue ---")
-internal class Day05Test {
+@DisplayName("--- Day 7, 2024: Bridge Repair ---")
+internal class Day07Test {
 
     @ParameterizedTest
     @MethodSource("testCases")
@@ -19,10 +19,10 @@ internal class Day05Test {
     companion object {
         @JvmStatic
         fun testCases(): Stream<Arguments> = Stream.of(
-            eOne("2024", "05") { printQueueOne(it).toLong() },
-            pOne("2024", "05") { printQueueOne(it).toLong() },
-            eTwo("2024", "05") { printQueueTwo(it).toLong() },
-            pTwo("2024", "05") { printQueueTwo(it).toLong() },
+            eOne("2024", "07") { bridgeRepairOne(it) },
+            pOne("2024", "07") { bridgeRepairOne(it) },
+            eTwo("2024", "07") { bridgeRepairTwo(it) },
+            pTwo("2024", "07") { bridgeRepairTwo(it) },
         )
     }
 }
