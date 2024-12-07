@@ -7,19 +7,21 @@ import eu.tinylinden.aoc.base.rest
 
 // https://adventofcode.com/2024/day/5
 
-fun printQueueOne(input: String): Int =
+fun printQueueOne(input: String): Long =
     rules(input).let { rules ->
         updates(input)
             .filter { isInOrder(it, rules) }
             .sumOf { it.middle() }
+            .toLong()
     }
 
-fun printQueueTwo(input: String): Int =
+fun printQueueTwo(input: String): Long =
     rules(input).let { rules ->
         updates(input)
             .filterNot { isInOrder(it, rules) }
             .map { fixOrder(it, rules) }
             .sumOf { it.middle() }
+            .toLong()
     }
 
 private fun isInOrder(pages: Pages, rules: Rules): Boolean {

@@ -1,7 +1,9 @@
 package eu.tinylinden.aoc.y2024.d03
 
-fun mullItOver(s: String, extended: Boolean): Int =
-    parse(s).fold(State(extended)) { state, token -> state.eval(token) }.result
+// https://adventofcode.com/2024/day/3
+
+fun mullItOver(s: String, extended: Boolean): Long =
+    parse(s).fold(State(extended)) { state, token -> state.eval(token) }.result.toLong()
 
 private fun parse(s: String): List<String> =
     s.lines().flatMap { line ->

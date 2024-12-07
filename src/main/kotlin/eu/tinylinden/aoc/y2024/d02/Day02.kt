@@ -4,10 +4,10 @@ import kotlin.math.abs
 
 // https://adventofcode.com/2024/day/2
 
-fun redNosedReports(s: String, damp: Boolean): Int =
-    parse(s).count { report ->
-        isSafe(report) || (damp && dampened(report).any { isSafe(it) })
-    }
+fun redNosedReports(s: String, damp: Boolean): Long =
+    parse(s)
+        .count { report -> isSafe(report) || (damp && dampened(report).any { isSafe(it) }) }
+        .toLong()
 
 private fun dampened(report: List<Int>): Sequence<List<Int>> =
     report.indices.asSequence()

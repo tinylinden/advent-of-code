@@ -4,11 +4,11 @@ import kotlin.math.abs
 
 // https://adventofcode.com/2024/day/1
 
-fun distance(s: String): Int =
-    (left(s) zip right(s)).sumOf { (l, r) -> abs(l - r) }
+fun distance(s: String): Long =
+    (left(s) zip right(s)).sumOf { (l, r) -> abs(l - r) }.toLong()
 
-fun similarity(s: String): Int =
-    similarity(left(s), right(s).groupingBy { it }.eachCount())
+fun similarity(s: String): Long =
+    similarity(left(s), right(s).groupingBy { it }.eachCount()).toLong()
 
 private fun similarity(left: List<Int>, right: Map<Int, Int>): Int =
     left.sumOf { it * (right[it] ?: 0) }
