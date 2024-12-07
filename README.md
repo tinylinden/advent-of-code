@@ -15,16 +15,15 @@ provides. Let's see what comes out of this.
 
 ### 2024
 
-Score: 12/50 :star:
-
-| Day | Puzzle                                                    |                                   Solution                                   |
-|:---:|-----------------------------------------------------------|:----------------------------------------------------------------------------:|
-|  1  | [Historian Hysteria](https://adventofcode.com/2024/day/1) | [:white_check_mark:](./src/main/kotlin/eu/tinylinden/aoc/y2024/d01/Day01.kt) |
-|  2  | [Red-Nosed Reports](https://adventofcode.com/2024/day/2)  | [:white_check_mark:](./src/main/kotlin/eu/tinylinden/aoc/y2024/d02/Day02.kt) |
-|  3  | [Mull It Over](https://adventofcode.com/2024/day/3)       | [:white_check_mark:](./src/main/kotlin/eu/tinylinden/aoc/y2024/d03/Day03.kt) |
-|  4  | [Ceres Search](https://adventofcode.com/2024/day/4)       | [:white_check_mark:](./src/main/kotlin/eu/tinylinden/aoc/y2024/d04/Day04.kt) |
-|  5  | [Print Queue](https://adventofcode.com/2024/day/5)        | [:white_check_mark:](./src/main/kotlin/eu/tinylinden/aoc/y2024/d05/Day05.kt) |
-|  6  | [Guard Gallivant](https://adventofcode.com/2024/day/6)    | [:white_check_mark:](./src/main/kotlin/eu/tinylinden/aoc/y2024/d06/Day06.kt) |
+| Day | Puzzle                                                    |                            :star:                             |
+|:---:|-----------------------------------------------------------|:-------------------------------------------------------------:|
+|  1  | [Historian Hysteria](https://adventofcode.com/2024/day/1) | [2/2](./src/main/kotlin/eu/tinylinden/aoc/y2024/d01/Day01.kt) |
+|  2  | [Red-Nosed Reports](https://adventofcode.com/2024/day/2)  | [2/2](./src/main/kotlin/eu/tinylinden/aoc/y2024/d02/Day02.kt) |
+|  3  | [Mull It Over](https://adventofcode.com/2024/day/3)       | [2/2](./src/main/kotlin/eu/tinylinden/aoc/y2024/d03/Day03.kt) |
+|  4  | [Ceres Search](https://adventofcode.com/2024/day/4)       | [2/2](./src/main/kotlin/eu/tinylinden/aoc/y2024/d04/Day04.kt) |
+|  5  | [Print Queue](https://adventofcode.com/2024/day/5)        | [2/2](./src/main/kotlin/eu/tinylinden/aoc/y2024/d05/Day05.kt) |
+|  6  | [Guard Gallivant](https://adventofcode.com/2024/day/6)    | [2/2](./src/main/kotlin/eu/tinylinden/aoc/y2024/d06/Day06.kt) |
+|     |                                                           |                             12/50                             |
 
 ## Notes for future me
 
