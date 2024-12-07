@@ -2,10 +2,10 @@ package eu.tinylinden.aoc.y2024.d06
 
 import eu.tinylinden.aoc.base.*
 
-fun guardGallivantOne(input: String): Long =
-    walker(charGrid(input)).patrol().size.toLong()
+fun guardGallivantOne(input: String): Int =
+    walker(charGrid(input)).patrol().size
 
-fun guardGallivantTwo(input: String): Long {
+fun guardGallivantTwo(input: String): Int {
     val original = charGrid(input)
     val start = original.point('^')
 
@@ -15,7 +15,6 @@ fun guardGallivantTwo(input: String): Long {
     return (walker(original, start).patrol() - start)
         .parallelStream()
         .reduce(0, { acc, p -> acc + partial(p) }, { l, r -> l + r })
-        .toLong()
 }
 
 private fun walker(grid: CharGrid, start: Point = grid.point('^')) = Guard {

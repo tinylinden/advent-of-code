@@ -5,7 +5,7 @@ import eu.tinylinden.aoc.base.prepend
 import eu.tinylinden.aoc.base.rest
 import kotlin.math.pow
 
-fun bridgeRepairOne(input: String): Long {
+fun bridgeRepairOne(input: String): Int {
     fun possible(expected: Long, items: Items): Boolean =
         operations(items.size - 1)
             .any { expected == eval(items, it) }
@@ -13,9 +13,10 @@ fun bridgeRepairOne(input: String): Long {
     return parse(input)
         .filter { possible(it.first(), it.rest()) }
         .sumOf { it.first() }
+        .toInt()
 }
 
-fun bridgeRepairTwo(input: String): Long =
+fun bridgeRepairTwo(input: String): Int =
     0
 
 private fun eval(items: Items, ops: Operations): Long {

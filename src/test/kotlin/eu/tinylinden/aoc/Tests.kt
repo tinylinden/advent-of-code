@@ -6,9 +6,9 @@ import strikt.api.expectThat
 import strikt.assertions.isEqualTo
 import java.nio.charset.StandardCharsets
 
-internal fun interface Tested : (String) -> Long
+internal fun interface Tested : (String) -> Int
 
-internal typealias TestCase = Pair<String, Long>
+internal typealias TestCase = Pair<String, Int>
 
 internal fun runTest(case: String, tested: Tested) {
     testCase(case).let { (given, expected) ->
@@ -41,4 +41,4 @@ private fun testCase(case: String): TestCase =
 
 private fun String.given(): String = substringAfter("\n").trimEnd()
 
-private fun String.expected(): Long = substringBefore("\n").toLong()
+private fun String.expected(): Int = substringBefore("\n").toInt()
