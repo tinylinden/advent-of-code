@@ -19,10 +19,10 @@ internal class Day03Test {
     companion object {
         @JvmStatic
         fun testCases(): Stream<Arguments> = Stream.of(
-            eOne("2024", "03") { mullItOver(it, false) },
-            pOne("2024", "03") { mullItOver(it, false) },
-            eTwo("2024", "03") { mullItOver(it, true) },
-            pTwo("2024", "03") { mullItOver(it, true) },
+            eOne("2024", "03") { mullItOver(it, false).toLong() },
+            pOne("2024", "03") { mullItOver(it, false).toLong() },
+            eTwo("2024", "03") { mullItOver(it, true).toLong() },
+            pTwo("2024", "03") { mullItOver(it, true).toLong() },
         )
     }
 }

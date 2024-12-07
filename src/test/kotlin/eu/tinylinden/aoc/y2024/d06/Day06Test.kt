@@ -20,10 +20,10 @@ internal class Day06Test {
     companion object {
         @JvmStatic
         fun testCases(): Stream<Arguments> = Stream.of(
-            eOne("2024", "06") { guardGallivantOne(it) },
-            pOne("2024", "06") { guardGallivantOne(it) },
-            eTwo("2024", "06") { guardGallivantTwo(it) },
-            pTwo("2024", "06") { guardGallivantTwo(it) },
+            eOne("2024", "06") { guardGallivantOne(it).toLong() },
+            pOne("2024", "06") { guardGallivantOne(it).toLong() },
+            eTwo("2024", "06") { guardGallivantTwo(it).toLong() },
+            pTwo("2024", "06") { guardGallivantTwo(it).toLong() },
         )
     }
 }

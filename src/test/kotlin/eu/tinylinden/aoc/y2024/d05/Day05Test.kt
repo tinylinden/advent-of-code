@@ -19,10 +19,10 @@ internal class Day05Test {
     companion object {
         @JvmStatic
         fun testCases(): Stream<Arguments> = Stream.of(
-            eOne("2024", "05") { printQueueOne(it) },
-            pOne("2024", "05") { printQueueOne(it) },
-            eTwo("2024", "05") { printQueueTwo(it) },
-            pTwo("2024", "05") { printQueueTwo(it) },
+            eOne("2024", "05") { printQueueOne(it).toLong() },
+            pOne("2024", "05") { printQueueOne(it).toLong() },
+            eTwo("2024", "05") { printQueueTwo(it).toLong() },
+            pTwo("2024", "05") { printQueueTwo(it).toLong() },
         )
     }
 }

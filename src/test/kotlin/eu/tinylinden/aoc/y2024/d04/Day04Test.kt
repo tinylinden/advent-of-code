@@ -19,10 +19,10 @@ internal class Day04Test {
     companion object {
         @JvmStatic
         fun testCases(): Stream<Arguments> = Stream.of(
-            eOne("2024", "04") { ceresSearchOne(it) },
-            pOne("2024", "04") { ceresSearchOne(it) },
-            eTwo("2024", "04") { ceresSearchTwo(it) },
-            pTwo("2024", "04") { ceresSearchTwo(it) },
+            eOne("2024", "04") { ceresSearchOne(it).toLong() },
+            pOne("2024", "04") { ceresSearchOne(it).toLong() },
+            eTwo("2024", "04") { ceresSearchTwo(it).toLong() },
+            pTwo("2024", "04") { ceresSearchTwo(it).toLong() },
         )
     }
 }

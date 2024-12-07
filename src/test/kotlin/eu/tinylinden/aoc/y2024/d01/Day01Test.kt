@@ -19,10 +19,10 @@ internal class Day01Test {
     companion object {
         @JvmStatic
         fun testCases(): Stream<Arguments> = Stream.of(
-            eOne("2024", "01") { distance(it) },
-            pOne("2024", "01") { distance(it) },
-            eTwo("2024", "01") { similarity(it) },
-            pTwo("2024", "01") { similarity(it) },
+            eOne("2024", "01") { distance(it).toLong() },
+            pOne("2024", "01") { distance(it).toLong() },
+            eTwo("2024", "01") { similarity(it).toLong() },
+            pTwo("2024", "01") { similarity(it).toLong() },
         )
     }
 }
