@@ -61,7 +61,7 @@ ALL...
 Example test cases should be populated by copying them manually from
 AoC. Puzzle ones for given day can be fetched auto-magically with
 `make fetch-puzzle y=YYYY d=DD`. This will only work if following
-variables are specified in `.env` file:
+environment variables are specified (e.g, in `.env` file):
 
 - `TEMP` - temporary directory,
 - `SESSION` - session identifier (stored as cookie named `session` after

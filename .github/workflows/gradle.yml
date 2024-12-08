@@ -39,7 +39,6 @@ jobs:
           SESSION: ${{ secrets.SESSION }}
           TEMP: /tmp
         run: |
-          touch .env
           make prepare y=2024 d=01
           make prepare y=2024 d=02
           make prepare y=2024 d=03

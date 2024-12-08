@@ -1,7 +1,7 @@
 # This Makefile is complicated as f..k, but last time I have touched one
 # was somewhere around year 2003.
 
-include ./.env
+-include ./.env
 
 MAIN  = ./src/main/kotlin/eu/tinylinden/aoc
 TEST  = ./src/test/kotlin/eu/tinylinden/aoc
