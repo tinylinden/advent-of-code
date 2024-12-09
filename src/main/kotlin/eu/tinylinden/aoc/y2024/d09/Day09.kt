@@ -1,32 +1,83 @@
 package eu.tinylinden.aoc.y2024.d09
 
+// https://adventofcode.com/2024/day/9
+
 fun diskFragmenterOne(input: String): Long =
-    arrange(parse(input).toMutableList())
-        .mapIndexed { i, v -> i * v }
+    moveBlocks(parse(input) as MutableList)
+        .mapIndexed { idx, id -> (idx * (id ?: 0)).toLong() }
         .sum()
 
-fun diskFragmenterTwo(input: String): Long = 0
+fun diskFragmenterTwo(input: String): Long =
+    moveFiles(parse(input) as MutableList)
+        .mapIndexed { idx, id -> (idx * (id ?: 0)).toLong() }
+        .sum()
 
-private fun arrange(buf: MutableList<Long?>): List<Long> {
+private fun moveBlocks(disk: MutableList<Int?>): List<Int?> {
     var l = 0
-    var r = buf.size - 1
+    var r = disk.size - 1
 
     while (l < r) {
         when {
-            buf[l] != null -> l++
-            buf[r] == null -> r--
+            disk[l] != null -> l++
+            disk[r] == null -> r--
             else -> {
-                buf[l++] = buf[r]
-                buf[r--] = null
+                disk[l++] = disk[r]
+                disk[r--] = null
             }
         }
     }
 
-    return buf.filterNotNull()
+    return disk
 }
 
-private fun parse(input: String): List<Long?> =
+private fun moveFiles(disk: MutableList<Int?>): List<Int?> {
+    var hwm = disk.size - 1
+
+    fun src(v: Int): MutableList<Int?> {
+        var r = hwm
+        while (disk[r] != v) {
+            r--
+        }
+
+        var l = r
+        while (disk[l - 1] == disk[r]) {
+            l--
+        }
+
+        hwm = l - 1
+        return disk.subList(l, r + 1)
+    }
+
+    fun move(src: MutableList<Int?>) {
+        var l = 0
+        val n = src.size
+        while (l + n < hwm) {
+            val target = disk.subList(l, l + n)
+            if (target.all { it == null }) {
+                target.fill(src[0])
+                src.fill(null)
+                return
+            }
+            l++
+        }
+    }
+
+    println(disk.dump().take(100))
+    println(disk.dump().takeLast(100))
+
+    var i = disk.maxOf { it ?: -1 }
+    while (i > 0) {
+        move(src(i))
+        i--
+    }
+
+    return disk
+}
+
+private fun List<Int?>.dump(): String = joinToString("") { it?.toString() ?: "." }
+
+private fun parse(input: String): List<Int?> =
     "${input}0".chunked(2)
         .flatMapIndexed { i, s ->
-            List(s[0].digitToInt()) { i.toLong() } + List(s[1].digitToInt()) { null }
+            List(s[0].digitToInt()) { i } + List(s[1].digitToInt()) { null }
         }
