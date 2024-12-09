@@ -20,7 +20,7 @@ interface CharGrid {
 
     fun point(char: Char): Point
     fun points(char: Char): List<Point>
-    fun pointsByChar(): Map<Char, List<Point>>
+    fun pointsByChar(predicate: (Char) -> Boolean = { true }): Map<Char, List<Point>>
 
     fun mutated(mutation: CharCell): CharGrid = MutatedCharGrid(this, mutation)
 }
@@ -45,8 +45,10 @@ private class BasicCharGrid(
     override fun points(char: Char): List<Point> =
         cells.filter { (_, c) -> c == char }.map { (p, _) -> p }
 
-    override fun pointsByChar(): Map<Char, List<Point>> =
-        cells.entries.groupBy({ (_, c) -> c }, { (p, _) -> p })
+    override fun pointsByChar(predicate: (Char) -> Boolean): Map<Char, List<Point>> =
+        cells.entries
+            .filter { (_, c) -> predicate(c) }
+            .groupBy({ (_, c) -> c }, { (p, _) -> p })
 
     override fun toString(): String =
         cells.toSortedMap(pointsComparator())
