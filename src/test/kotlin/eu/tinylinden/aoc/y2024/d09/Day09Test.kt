@@ -1,7 +1,6 @@
 package eu.tinylinden.aoc.y2024.d09
 
 import eu.tinylinden.aoc.*
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -20,10 +19,10 @@ internal class Day09Test {
     companion object {
         @JvmStatic
         fun testCases(): Stream<Arguments> = Stream.of(
-            eOne("2024", "09") { diskFragmenterOne(it).toLong() },
-            pOne("2024", "09") { diskFragmenterOne(it).toLong() },
-            eTwo("2024", "09") { diskFragmenterTwo(it).toLong() },
-            pTwo("2024", "09") { diskFragmenterTwo(it).toLong() },
+            eOne("2024", "09") { diskFragmenterOne(it) },
+            pOne("2024", "09") { diskFragmenterOne(it) },
+            eTwo("2024", "09") { diskFragmenterTwo(it) },
+            pTwo("2024", "09") { diskFragmenterTwo(it) },
         )
     }
 }
