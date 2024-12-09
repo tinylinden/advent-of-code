@@ -2,11 +2,11 @@ package eu.tinylinden.aoc.y2024.d08
 
 import eu.tinylinden.aoc.base.*
 
-fun resonantCollinearityOne(input: String): Int = countAntinodes(charGrid(input), Single)
+fun resonantCollinearityOne(input: String): Int = antinodesCount(charGrid(input), Closest)
 
-fun resonantCollinearityTwo(input: String): Int = countAntinodes(charGrid(input), Resonant)
+fun resonantCollinearityTwo(input: String): Int = antinodesCount(charGrid(input), Resonant)
 
-private fun countAntinodes(grid: CharGrid, f: Finder): Int =
+private fun antinodesCount(grid: CharGrid, f: Finder): Int =
     grid.pointsByChar { it != '.' }
         .values
         .filter { it.size > 1 }
@@ -14,27 +14,28 @@ private fun countAntinodes(grid: CharGrid, f: Finder): Int =
         .toSet()
         .size
 
-private fun antinodes(points: List<Point>, grid: CharGrid, f: Finder): List<Point> {
-    fun part(p: Point, rest: List<Point>): List<Point> =
+private fun antinodes(antennas: List<Point>, grid: CharGrid, f: Finder): List<Point> {
+    fun partial(head: Point, rest: List<Point>): List<Point> =
         when (rest.size) {
             0 -> emptyList()
-            1 -> f(p, rest[0], grid)
-            else -> f(p, rest[0], grid) + part(p, rest.drop(1))
+            1 -> f(head, rest[0], grid)
+            else -> f(head, rest[0], grid) + partial(head, rest.drop(1))
         }
 
-    return points.flatMapIndexed { i, p -> part(p, points.drop(i + 1)) }
+    return antennas.flatMapIndexed { i, p -> partial(p, antennas.drop(i + 1)) }
 }
 
 private fun interface Finder : (Point, Point, CharGrid) -> List<Point>
 
-private val Single = Finder { l, r, grid ->
-    (r - l).let { listOf(l - it, r + it) }.filter { grid.contains(it) }
+private val Closest = Finder { l, r, grid ->
+    val delta = r - l
+    listOf(l - delta, r + delta).filter { grid.contains(it) }
 }
 
 private val Resonant = Finder { l, r, grid ->
-    fun part(seed: Point, next: (Point) -> Point) =
-        generateSequence(seed, next).takeWhile { grid.contains(it) }.toList()
+    fun partial(seed: Point, next: (Point) -> Point) =
+        generateSequence(seed, next).takeWhile { grid.contains(it) }
 
-    val delta = (r - l)
-    part(l) { it - delta } + part(r) { it + delta }
+    val delta = r - l
+    (partial(l) { it - delta } + partial(r) { it + delta }).toList()
 }
