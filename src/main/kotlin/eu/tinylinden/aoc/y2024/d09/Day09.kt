@@ -2,82 +2,88 @@ package eu.tinylinden.aoc.y2024.d09
 
 // https://adventofcode.com/2024/day/9
 
-fun diskFragmenterOne(input: String): Long =
-    moveBlocks(parse(input) as MutableList)
-        .mapIndexed { idx, id -> (idx * (id ?: 0)).toLong() }
-        .sum()
+// ugly as hell, but working
+fun diskFragmenterOne(input: String): Long {
+    val mem = input.foldIndexed(mutableListOf<Int?>()) { idx, acc, raw ->
+        val cap = raw.digitToInt()
+        when {
+            idx % 2 == 0 -> acc += List(cap) { idx / 2 }
+            cap > 0 -> acc += List(cap) { null }
+        }
+        acc
+    }
 
-fun diskFragmenterTwo(input: String): Long =
-    moveFiles(parse(input) as MutableList)
-        .mapIndexed { idx, id -> (idx * (id ?: 0)).toLong() }
-        .sum()
-
-private fun moveBlocks(disk: MutableList<Int?>): List<Int?> {
     var l = 0
-    var r = disk.size - 1
+    var r = mem.size - 1
 
     while (l < r) {
         when {
-            disk[l] != null -> l++
-            disk[r] == null -> r--
+            mem[l] != null -> l++
+            mem[r] == null -> r--
             else -> {
-                disk[l++] = disk[r]
-                disk[r--] = null
+                mem[l++] = mem[r]
+                mem[r--] = null
             }
         }
     }
 
-    return disk
+    return mem.foldIndexed(0L) { idx, acc, next -> acc + idx * (next ?: 0) }
 }
 
-private fun moveFiles(disk: MutableList<Int?>): List<Int?> {
-    var hwm = disk.size - 1
+// ugly as hell, but working
+fun diskFragmenterTwo(input: String): Long {
+    val mem = input.foldIndexed(mutableListOf<Blk>()) { idx, acc, raw ->
+        val cap = raw.digitToInt()
+        when {
+            idx % 2 == 0 -> acc += Blk.Full(cap, idx / 2)
+            cap > 0 -> acc += Blk.Empty(cap)
+        }
+        acc
+    }
 
-    fun src(v: Int): MutableList<Int?> {
-        var r = hwm
-        while (disk[r] != v) {
+    var r = mem.size - 1
+    while (r > 0) {
+        while (mem[r] !is Blk.Full) {
             r--
         }
 
-        var l = r
-        while (disk[l - 1] == disk[r]) {
-            l--
-        }
+        val sBlk = mem[r]
+        val (tIdx, tBlk) = mem.withIndex().take(r).firstOrNull { (_, b) -> b is Blk.Empty && b.cap >= sBlk.cap }
+            ?: IndexedValue(-1, Blk.Phony)
 
-        hwm = l - 1
-        return disk.subList(l, r + 1)
-    }
-
-    fun move(src: MutableList<Int?>) {
-        var l = 0
-        val n = src.size
-        while (l + n < hwm) {
-            val target = disk.subList(l, l + n)
-            if (target.all { it == null }) {
-                target.fill(src[0])
-                src.fill(null)
-                return
+        if (tBlk is Blk.Empty) {
+            if (tBlk.cap == sBlk.cap) {
+                // just swap
+                mem[r] = tBlk
+                mem[tIdx] = sBlk
             }
-            l++
+            if (tBlk.cap > sBlk.cap) {
+                // swap and insert
+                mem[r] = Blk.Empty(sBlk.cap)
+                mem[tIdx] = sBlk
+                mem.add(tIdx + 1, Blk.Empty(tBlk.cap - sBlk.cap))
+                r++
+            }
         }
+        r--
     }
 
-    println(disk.dump().take(100))
-    println(disk.dump().takeLast(100))
-
-    var i = disk.maxOf { it ?: -1 }
-    while (i > 0) {
-        move(src(i))
-        i--
-    }
-
-    return disk
+    return mem.fold(0 to 0L) { (offset, acc), next -> (offset + next.cap) to acc + next.checksum(offset) }.second
 }
 
-private fun List<Int?>.dump(): String = joinToString("") { it?.toString() ?: "." }
+private sealed interface Blk {
+    val cap: Int get() = 0
 
-private fun parse(input: String): List<Int?> =
-    "${input}0".chunked(2)
-        .flatMapIndexed { i, s ->
-            List(s[0].digitToInt()) { i } + List(s[1].digitToInt()) { null }
-        }
+    fun checksum(offset: Int): Long = 0
+
+    data object Phony : Blk
+
+    data class Empty(override val cap: Int) : Blk {
+        override fun toString() = ".".repeat(cap)
+    }
+
+    data class Full(override val cap: Int, val dat: Int) : Blk {
+        override fun toString() = "$dat".repeat(cap)
+        override fun checksum(offset: Int): Long = (offset..<(offset + cap)).sumOf { (it * dat).toLong() }
+    }
+}
