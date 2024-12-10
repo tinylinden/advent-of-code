@@ -47,6 +47,7 @@ jobs:
           make prepare y=2024 d=06
           make prepare y=2024 d=07
           make prepare y=2024 d=08
+          make prepare y=2024 d=09
       - name: build-and-test
         run: ./gradlew check -Dtestlogger.theme=plain
       - name: test-report

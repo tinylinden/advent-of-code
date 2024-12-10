@@ -23,7 +23,8 @@ puzzles with Kotlin programming language. Let's see what comes out of this.
 |  6  | [Guard Gallivant](https://adventofcode.com/2024/day/6)       | [2/2](./src/main/kotlin/eu/tinylinden/aoc/y2024/d06/Day06.kt) |
 |  7  | [Bridge Repair](https://adventofcode.com/2024/day/7)         | [2/2](./src/main/kotlin/eu/tinylinden/aoc/y2024/d07/Day07.kt) |
 |  8  | [Resonant Collinearity](https://adventofcode.com/2024/day/8) | [2/2](./src/main/kotlin/eu/tinylinden/aoc/y2024/d08/Day08.kt) |
-|     |                                                              |                             16/50                             |
+|  9  | [Disk Fragmenter](https://adventofcode.com/2024/day/9)       | [2/2](./src/main/kotlin/eu/tinylinden/aoc/y2024/d09/Day09.kt) |
+|     |                                                              |                             18/50                             |
 
 ## Notes for future me
 
