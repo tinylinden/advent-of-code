@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.test.logger)
+    alias(libs.plugins.jmh)
 }
 
 group = "eu.tinylinden"
@@ -18,8 +19,13 @@ dependencies {
     testImplementation(libs.strikt.core)
     testImplementation(libs.junit.jupiter.api)
     testImplementation(libs.junit.jupiter.params)
+    testImplementation(libs.jmh.generator.annprocess)
 
     testRuntimeOnly(libs.junit.jupiter.engine)
+
+    jmh(libs.jmh.core)
+    jmh(libs.jmh.generator.annprocess)
+    jmhAnnotationProcessor(libs.jmh.generator.annprocess)
 }
 
 tasks {

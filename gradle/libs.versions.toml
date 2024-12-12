@@ -1,13 +1,17 @@
 [versions]
 kotlin = "1.9.25"
 junit = "5.11.3"
+jmh = "1.37"
 
 [libraries]
 strikt-core = { group = "io.strikt", name = "strikt-core", version = "0.34.0" }
 junit-jupiter-api = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit" }
 junit-jupiter-params = { group = "org.junit.jupiter", name = "junit-jupiter-params", version.ref = "junit" }
 junit-jupiter-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit" }
+jmh-core = { group = "org.openjdk.jmh", name = "jmh-core", version.ref = "jmh" }
+jmh-generator-annprocess = { group = "org.openjdk.jmh", name = "jmh-generator-annprocess", version.ref = "jmh" }
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 test-logger = { id = "com.adarshr.test-logger", version = "3.1.0" }
+jmh = { id = "me.champeau.jmh", version = "0.7.2" }
