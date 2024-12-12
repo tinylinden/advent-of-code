@@ -1,5 +1,6 @@
 package eu.tinylinden.aoc.base
 
+import kotlin.math.max
 import kotlin.math.sqrt
 
 // grid
@@ -21,6 +22,7 @@ interface CharGrid {
     fun point(char: Char): Point
     fun points(char: Char): List<Point>
     fun pointsByChar(predicate: (Char) -> Boolean = { true }): Map<Char, List<Point>>
+    fun border(predicate: (Char) -> Boolean = { true }): List<Point>
 
     fun mutated(mutation: CharCell): CharGrid = MutatedCharGrid(this, mutation)
 }
@@ -34,8 +36,7 @@ private class BasicCharGrid(
     override fun words(phrase: String, directions: List<Direction>): List<Word> =
         cells.filterValues { it == phrase.first() }
             .keys
-            .flatMap { words(this, it, phrase.length, directions) }
-            .filter { string(it) == phrase }
+            .flatMap { words(this, it, phrase, directions) }
 
     override fun contains(point: Point): Boolean = cells.keys.contains(point)
 
@@ -49,6 +50,12 @@ private class BasicCharGrid(
         cells.entries
             .filter { (_, c) -> predicate(c) }
             .groupBy({ (_, c) -> c }, { (p, _) -> p })
+
+    override fun border(predicate: (Char) -> Boolean): List<Point> =
+        cells.entries
+            .filter { (p, _) -> p.row() == 0 || p.col() == 0 || p.row() == maxPoint.row() || p.col() == maxPoint.col() }
+            .filter { (_, c) -> predicate(c) }
+            .map { (p, _) -> p }
 
     override fun toString(): String =
         cells.toSortedMap(pointsComparator())
