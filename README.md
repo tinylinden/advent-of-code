@@ -24,9 +24,9 @@ puzzles with Kotlin programming language. Let's see what comes out of this.
 |  7  | [Bridge Repair](https://adventofcode.com/2024/day/7)         |  2/2   |
 |  8  | [Resonant Collinearity](https://adventofcode.com/2024/day/8) |  2/2   |
 |  9  | [Disk Fragmenter](https://adventofcode.com/2024/day/9)       |  2/2   |
-| 10  | [Hoof It](https://adventofcode.com/2024/day/10)              |  0/2   |
+| 10  | [Hoof It](https://adventofcode.com/2024/day/10)              |  2/2   |
 | 11  | [Plutonian Pebbles](https://adventofcode.com/2024/day/11)    |  2/2   |
-|     |                                                              | 20/50  |
+|     |                                                              | 22/50  |
 
 ## Notes for future me
 
