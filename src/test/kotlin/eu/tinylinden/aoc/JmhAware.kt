@@ -9,9 +9,9 @@ import java.util.concurrent.TimeUnit
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 @State(Scope.Benchmark)
 @Fork(value = 1)
-@Warmup(iterations = 5, timeUnit = TimeUnit.MILLISECONDS, time = 5000)
-@Measurement(iterations = 5, timeUnit = TimeUnit.MILLISECONDS, time = 5000)
-internal open class JmhBase {
+@Warmup(iterations = 1, timeUnit = TimeUnit.SECONDS, time = 5)
+@Measurement(iterations = 5, timeUnit = TimeUnit.SECONDS, time = 5)
+internal open class JmhAware {
 
     fun main(args: Array<String>) {
         Runner(

@@ -1,9 +1,7 @@
 plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.test.logger)
-
-
-    id("me.champeau.jmh") version "0.7.2"
+    alias(libs.plugins.jmh)
 }
 
 group = "eu.tinylinden"
@@ -23,14 +21,11 @@ dependencies {
     testImplementation(libs.junit.jupiter.params)
     testImplementation(libs.jmh.generator.annprocess)
 
-    jmh ("org.openjdk.jmh:jmh-core:1.36")
-    jmh ("org.openjdk.jmh:jmh-generator-annprocess:1.36")
-
-    // this is the line that solves the missing /META-INF/BenchmarkList error
-    jmhAnnotationProcessor ("org.openjdk.jmh:jmh-generator-annprocess:1.36")
-
-
     testRuntimeOnly(libs.junit.jupiter.engine)
+
+    jmh(libs.jmh.core)
+    jmh(libs.jmh.generator.annprocess)
+    jmhAnnotationProcessor(libs.jmh.generator.annprocess)
 }
 
 tasks {
