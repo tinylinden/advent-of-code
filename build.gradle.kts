@@ -1,3 +1,5 @@
+import me.champeau.jmh.JMHTask
+
 plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.test.logger)
@@ -32,5 +34,11 @@ tasks {
     withType<Test> {
         useJUnitPlatform()
         jvmArgs = listOf("-Xshare:off")
+    }
+
+    withType<JMHTask> {
+        project.properties["jmh.include"]?.let {
+            includes = listOf(it.toString())
+        }
     }
 }

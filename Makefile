@@ -10,9 +10,6 @@ DATA  = ./src/test/resources/private
 test:
 	@./gradlew clean test -Dtestlogger.theme=mocha
 
-benchmark:
-	@./gradlew jmh
-
 # params: y=YYYY d=DD
 scaffold:
 	@mkdir -p $(MAIN)/y$(y)/d$(d)
