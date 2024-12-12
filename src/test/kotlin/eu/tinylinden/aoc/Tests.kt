@@ -28,15 +28,21 @@ internal fun eTwo(y: String, d: String, tested: Tested) =
 internal fun pTwo(y: String, d: String, tested: Tested) =
     argumentSet("Part Two - puzzle", "y${y}d${d}p2-puzzle", tested)
 
+internal fun pOneInput(y: String, d: String) =
+    parse("y${y}d${d}p1-puzzle") { it.given() }
+
 private fun testCase(case: String): TestCase =
+    parse(case) { it.given() to it.expected() }
+
+private fun <T> parse(case: String, f: (String) -> T): T =
     try {
         object {}.javaClass.getResource("/private/$case")
             ?.readText(StandardCharsets.UTF_8)
-            ?.let { it.given() to it.expected() }
+            ?.let { f(it) }
             ?: throw IllegalArgumentException()
     } catch (ex: Exception) {
         assumeTrue(false)
-        "" to 0 // irrelevant - failed assumption above will skip test
+        f("") // irrelevant - failed assumption above will skip test
     }
 
 private fun String.given(): String = substringAfter("\n").trimEnd()
