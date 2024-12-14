@@ -17,8 +17,8 @@ private fun List<ClawMachine>.minTokens(): Long =
             val b = db / d
 
             when {
-                da % d != 0L || db % d != 0L -> 0 // fractions impossible
                 a < 0 || b < 0 -> 0               // negatives impossible
+                da % d != 0L || db % d != 0L -> 0 // fractions impossible
                 else -> 3 * a + b
             }
         }
@@ -32,16 +32,8 @@ private typealias Prize = Pair<Long, Long>
 private typealias ClawMachine = Triple<Button, Button, Prize>
 
 // ugly, but working
-private fun clawMachines(input: String): List<ClawMachine> {
-    val cache = input.lines().filter { it.isNotBlank() }.groupBy { it.substringBefore(":") }
-
-    val a = cache["Button A"]!!.map { pair(it) }
-    val b = cache["Button B"]!!.map { pair(it) }
-    val p = cache["Prize"]!!.map { pair(it) }
-
-    return a.indices.map { ClawMachine(a[it], b[it], p[it]) }
-}
-
-private fun pair(input: String): Pair<Long, Long> =
-    input.replace(Regex("[^\\d,]"), "").split(',')
-        .let { it[0].toLong() to it[1].toLong() }
+private fun clawMachines(input: String): List<ClawMachine> =
+    input.lines().filter { it.isNotBlank() }
+        .flatMap { it.replace(Regex("[^\\d,]"), "").split(',') }
+        .map { it.toLong() }
+        .chunked(6) { ClawMachine(it[0] to it[1], it[2] to it[3], it[4] to it[5]) }
