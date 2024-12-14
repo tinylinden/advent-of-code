@@ -1,14 +1,12 @@
 package eu.tinylinden.aoc.y2024.d13
 
+import eu.tinylinden.aoc.base.parsePairs
+
 fun clawContraptionOne(input: String): Long =
     clawMachines(input).minTokens()
 
-fun clawContraptionTwo(input: String): Long {
-    fun adjust(prize: Prize, adjustment: Long = 10_000_000_000_000) =
-        prize.let { (x, y) -> x + adjustment to y + adjustment }
-
-    return clawMachines(input).map { (a, b, prize) -> Triple(a, b, adjust(prize)) }.minTokens()
-}
+fun clawContraptionTwo(input: String): Long =
+    clawMachines(input, 10_000_000_000_000).minTokens()
 
 private fun List<ClawMachine>.minTokens(): Long =
     map { (a, b, prize) -> Triple(det(a, b), det(prize, b), det(a, prize)) }
@@ -32,8 +30,6 @@ private typealias Prize = Pair<Long, Long>
 private typealias ClawMachine = Triple<Button, Button, Prize>
 
 // ugly, but working
-private fun clawMachines(input: String): List<ClawMachine> =
-    input.lines().filter { it.isNotBlank() }
-        .flatMap { it.replace(Regex("[^\\d,]"), "").split(',') }
-        .map { it.toLong() }
-        .chunked(6) { ClawMachine(it[0] to it[1], it[2] to it[3], it[4] to it[5]) }
+private fun clawMachines(input: String, adj: Long = 0): List<ClawMachine> =
+    parsePairs(input, Regex("\\d+")) { it.toLong() }
+        .chunked(3) { ClawMachine(it[0], it[1], it[2].let { (a, b) -> a + adj to b + adj }) }
