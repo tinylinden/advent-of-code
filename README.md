@@ -26,7 +26,9 @@ puzzles with Kotlin programming language. Let's see what comes out of this.
 |  9  | [Disk Fragmenter](https://adventofcode.com/2024/day/9)       |  2/2   |
 | 10  | [Hoof It](https://adventofcode.com/2024/day/10)              |  2/2   |
 | 11  | [Plutonian Pebbles](https://adventofcode.com/2024/day/11)    |  2/2   |
-|     |                                                              | 22/50  |
+| 12  | [Garden Groups](https://adventofcode.com/2024/day/12)        |  0/2   |
+| 13  | [Claw Contraption](https://adventofcode.com/2024/day/13)     |  2/2   |
+|     |                                                              | 24/50  |
 
 ## Notes for future me
 
