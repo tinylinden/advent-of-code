@@ -3,6 +3,7 @@
 [![aoc.jpg](banner.jpg)](https://unsplash.com/photos/ySNkCkdKyTY)  
 <sub>Photo by [Rodion Kutsaiev](https://unsplash.com/@frostroomhead) on [Unsplash](https://unsplash.com/)</sub>
 
+[![Kotlin](https://img.shields.io/badge/Kotlin-1.9-blue.svg?logo=kotlin)](http://kotlinlang.org)
 [![stability: experimental](https://masterminds.github.io/stability/experimental.svg)](https://masterminds.github.io/stability/experimental.html)
 [![build](https://github.com/tinylinden/advent-of-code/actions/workflows/gradle.yml/badge.svg)](https://github.com/tinylinden/advent-of-code/actions/workflows/gradle.yml)
 
@@ -28,7 +29,8 @@ puzzles with Kotlin programming language. Let's see what comes out of this.
 | 11  | [Plutonian Pebbles](https://adventofcode.com/2024/day/11)    |  2/2   |
 | 12  | [Garden Groups](https://adventofcode.com/2024/day/12)        |  0/2   |
 | 13  | [Claw Contraption](https://adventofcode.com/2024/day/13)     |  2/2   |
-|     |                                                              | 24/50  |
+| 13  | [Restroom Redoubt](https://adventofcode.com/2024/day/14)     |  1/2   |
+|     |                                                              | 25/50  |
 
 ## Notes for future me
 
