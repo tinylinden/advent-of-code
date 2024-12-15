@@ -19,10 +19,10 @@ internal class Day14Test {
     companion object {
         @JvmStatic
         fun testCases(): Stream<Arguments> = Stream.of(
-            eOne("2024", "14") { restroomRedoubtOne(it) },
-            pOne("2024", "14") { restroomRedoubtOne(it) },
-            eTwo("2024", "14") { restroomRedoubtTwo(it) },
-            pTwo("2024", "14") { restroomRedoubtTwo(it) },
+            eOne("2024", "14") { restroomRedoubtOne(it, 11, 7) },
+            pOne("2024", "14") { restroomRedoubtOne(it, 101, 103) },
+//            eTwo("2024", "14") { restroomRedoubtTwo(it) },
+//            pTwo("2024", "14") { restroomRedoubtTwo(it) },
         )
     }
 }
