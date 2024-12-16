@@ -22,7 +22,7 @@ internal class Day14Test {
             eOne("2024", "14") { restroomRedoubtOne(it, 11, 7) },
             pOne("2024", "14") { restroomRedoubtOne(it, 101, 103) },
 //            eTwo("2024", "14") { restroomRedoubtTwo(it) },
-//            pTwo("2024", "14") { restroomRedoubtTwo(it) },
+            pTwo("2024", "14") { restroomRedoubtTwo(it, 101, 103) },
         )
     }
 }

@@ -29,8 +29,8 @@ puzzles with Kotlin programming language. Let's see what comes out of this.
 | 11  | [Plutonian Pebbles](https://adventofcode.com/2024/day/11)    |  2/2   |
 | 12  | [Garden Groups](https://adventofcode.com/2024/day/12)        |  0/2   |
 | 13  | [Claw Contraption](https://adventofcode.com/2024/day/13)     |  2/2   |
-| 14  | [Restroom Redoubt](https://adventofcode.com/2024/day/14)     |  1/2   |
-|     |                                                              | 25/50  |
+| 14  | [Restroom Redoubt](https://adventofcode.com/2024/day/14)     |  2/2   |
+|     |                                                              | 26/50  |
 
 ## Notes for future me
 
