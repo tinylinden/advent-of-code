@@ -12,6 +12,13 @@ puzzles with Kotlin programming language. Let's see what comes out of this.
 
 ## Events
 
+### 2025
+
+| Day | Puzzle                                                 | :star: |
+|:---:|--------------------------------------------------------|:------:|
+|  1  | [Secret Entrance](https://adventofcode.com/2025/day/1) |  0/2   | 
+|     |                                                        |  0/24  | 
+
 ### 2024
 
 | Day | Puzzle                                                       | :star: |
@@ -49,7 +56,7 @@ For example `make scaffold y=2024 d=01` will create:
    ```
 2. Disabled test file
    ```
-   src/main/**/y2024/d01/Day01.kt
+   src/test/**/y2024/d01/Day01Test.kt
    ```
 3. Empty test case files for examples
    ```

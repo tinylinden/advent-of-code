@@ -39,19 +39,7 @@ jobs:
           SESSION: ${{ secrets.SESSION }}
           TEMP: /tmp
         run: |
-          make prepare y=2024 d=01
-          make prepare y=2024 d=02
-          make prepare y=2024 d=03
-          make prepare y=2024 d=04
-          make prepare y=2024 d=05
-          make prepare y=2024 d=06
-          make prepare y=2024 d=07
-          make prepare y=2024 d=08
-          make prepare y=2024 d=09
-          make prepare y=2024 d=10
-          make prepare y=2024 d=11
-          make prepare y=2024 d=13
-          make prepare y=2024 d=14
+          make prepare y=2025 d=01
       - name: build-and-test
         run: ./gradlew check -Dtestlogger.theme=plain
       - name: test-report
