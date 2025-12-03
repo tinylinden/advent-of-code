@@ -3,6 +3,7 @@ package eu.tinylinden.aoc.y2025.d01
 import eu.tinylinden.aoc.*
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
