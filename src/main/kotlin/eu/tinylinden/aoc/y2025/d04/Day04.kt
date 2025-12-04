@@ -12,22 +12,25 @@ private fun mask(grid: Grid): Grid =
         row.mapIndexed { ci, _ -> mask(grid, ri, ci) }
     }
 
-private fun mask(grid: Grid, ri: Int, ci: Int, thr: Int = 4): Int =
-    if (cell(grid, ri, ci) == 0) {
-        1
-    } else {
+private fun mask(grid: Grid, ri: Int, ci: Int, threshold: Int = 4): Int {
+    fun adjacent(): Int =
         // @formatter:off
-        val adj = cell(grid, ri - 1, ci - 1) + // NW
-                  cell(grid, ri - 1, ci    ) + // N
-                  cell(grid, ri - 1, ci + 1) + // NE
-                  cell(grid, ri    , ci + 1) + // E
-                  cell(grid, ri + 1, ci + 1) + // SE
-                  cell(grid, ri + 1, ci    ) + // S
-                  cell(grid, ri + 1, ci - 1) + // SW
-                  cell(grid, ri    , ci - 1)   // W
+        cell(grid, ri - 1, ci - 1) + // NW
+        cell(grid, ri - 1, ci    ) + // N
+        cell(grid, ri - 1, ci + 1) + // NE
+        cell(grid, ri    , ci + 1) + // E
+        cell(grid, ri + 1, ci + 1) + // SE
+        cell(grid, ri + 1, ci    ) + // S
+        cell(grid, ri + 1, ci - 1) + // SW
+        cell(grid, ri    , ci - 1)   // W
         // @formatter:on
-        if (adj < thr) 0 else 1
+
+    return when {
+        cell(grid, ri, ci) == 0 -> 1
+        adjacent() < threshold -> 0
+        else -> 1
     }
+}
 
 private fun cell(grid: Grid, ri: Int, ci: Int): Int =
     runCatching { grid[ri][ci] }.getOrDefault(0)
