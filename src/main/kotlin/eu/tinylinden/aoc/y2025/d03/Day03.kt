@@ -13,13 +13,13 @@ private fun solve(input: String, size: Int): Long =
         .sumOf { it.joinToLong() }
 
 private tailrec fun joltage(bank: BatteryBank, size: Int, acc: List<Int>): List<Int> =
-    if (acc.size == size) {
+    if (size == 0) {
         acc
     } else {
-        val (idx, vol) = bank.dropLast(size - acc.size - 1) // keep enough batteries
-            .mapIndexed { i, v -> i to v }                      // index of max vol will be handy
+        val (idx, vol) = bank.dropLast(size - 1) // keep enough batteries for later
+            .mapIndexed { i, v -> i to v } // index of max vol will be handy
             .maxBy { (_, v) -> v }
-        joltage(bank.drop(idx + 1), size, acc + vol)
+        joltage(bank.drop(idx + 1), size - 1, acc + vol)
     }
 
 private fun List<Int>.joinToLong(): Long = joinToString(separator = "").toLong()
