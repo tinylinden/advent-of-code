@@ -17,11 +17,11 @@ puzzles with Kotlin programming language. Let's see what comes out of this.
 | Day | Puzzle                                                     | :star: |
 |:---:|------------------------------------------------------------|:------:|
 |  1  | [Secret Entrance](https://adventofcode.com/2025/day/1)     |  2/2   | 
-|  2  | [Gift Shop](https://adventofcode.com/2025/day/2)           |  0/2   | 
+|  2  | [Gift Shop](https://adventofcode.com/2025/day/2)           |  2/2   | 
 |  3  | [Lobby](https://adventofcode.com/2025/day/3)               |  2/2   | 
 |  4  | [Printing Department](https://adventofcode.com/2025/day/4) |  2/2   | 
 |  5  | [Cafeteria](https://adventofcode.com/2025/day/5)           |  2/2   | 
-|     |                                                            |  8/24  | 
+|     |                                                            | 10/24  | 
 
 ### 2024
 
