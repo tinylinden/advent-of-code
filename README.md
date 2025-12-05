@@ -20,6 +20,7 @@ puzzles with Kotlin programming language. Let's see what comes out of this.
 |  2  | [Gift Shop](https://adventofcode.com/2025/day/2)           |  0/2   | 
 |  3  | [Lobby](https://adventofcode.com/2025/day/3)               |  2/2   | 
 |  4  | [Printing Department](https://adventofcode.com/2025/day/4) |  2/2   | 
+|  5  | [Cafeteria](https://adventofcode.com/2025/day/5)           |  0/2   | 
 |     |                                                            |  6/24  | 
 
 ### 2024
