@@ -10,14 +10,13 @@ fun giftShopTwo(input: String): Long =
         .flatMap { range -> range.filter { invalidTwo("$it") } }
         .sum()
 
-private fun invalidOne(s: String): Boolean =
-    s.length % 2 == 0 && s.chunked(s.length / 2).let { it.first() == it.last() }
+private fun invalidOne(s: String, n: Int = s.length): Boolean =
+    n % 2 == 0 && s.take(n / 2) == s.drop(n / 2)
 
-// slow but working
 private fun invalidTwo(s: String): Boolean =
-    generateSequence(1) { it + 1 }
-        .take(s.length - 1)
-        .any { s.chunked(it).distinct().size == 1 }
+    (1..s.length / 2)
+        .map { s.take(it).repeat(s.length / it) }
+        .any { it == s }
 
 private fun parse(input: String): List<LongRange> =
     input.split(',')
