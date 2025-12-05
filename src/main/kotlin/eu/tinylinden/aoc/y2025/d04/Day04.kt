@@ -4,18 +4,17 @@ fun printingDepartmentOne(input: String): Long =
     countZeros(mask(parse(input)))
 
 fun printingDepartmentTwo(input: String): Long {
-    var grid = parse(input)
-    var acc = 0L
-
-    do {
+    tailrec fun part(grid: Grid, acc: Long): Long {
         val mask = mask(grid)
         val removable = countZeros(mask)
-        acc += removable
-        grid = grid * mask
-        val repeat = removable > 0
-    } while(repeat)
+        return if (removable == 0L) {
+            acc
+        } else {
+            part(grid * mask, acc + removable)
+        }
+    }
 
-    return acc
+    return part(parse(input), 0)
 }
 
 private typealias Grid = List<List<Int>>
