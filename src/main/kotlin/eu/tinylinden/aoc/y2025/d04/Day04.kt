@@ -1,11 +1,32 @@
 package eu.tinylinden.aoc.y2025.d04
 
 fun printingDepartmentOne(input: String): Long =
-    mask(parse(input)).flatten().count { it == 0 }.toLong()
+    countZeros(mask(parse(input)))
 
-fun printingDepartmentTwo(input: String): Long = 0
+fun printingDepartmentTwo(input: String): Long {
+    var grid = parse(input)
+    var acc = 0L
+
+    do {
+        val mask = mask(grid)
+        val removable = countZeros(mask)
+        acc += removable
+        grid = grid * mask
+        val repeat = removable > 0
+    } while(repeat)
+
+    return acc
+}
 
 private typealias Grid = List<List<Int>>
+
+private operator fun Grid.times(other: Grid): Grid =
+    this.mapIndexed { ri, row ->
+        row.mapIndexed { ci, _ -> this[ri][ci] * other[ri][ci] }
+    }
+
+private fun countZeros(grid: Grid): Long =
+    grid.flatten().count { it == 0 }.toLong()
 
 private fun mask(grid: Grid): Grid =
     grid.mapIndexed { ri, row ->
@@ -26,8 +47,8 @@ private fun mask(grid: Grid, ri: Int, ci: Int, threshold: Int = 4): Int {
         // @formatter:on
 
     return when {
-        cell(grid, ri, ci) == 0 -> 1
-        adjacent() < threshold -> 0
+        cell(grid, ri, ci) == 0 -> -1 // empty position
+        adjacent() < threshold -> 0   // roll at (ri, ci) is accessible on the grid
         else -> 1
     }
 }
