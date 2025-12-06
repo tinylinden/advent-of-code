@@ -12,9 +12,7 @@ data class Column(
 ) {
     fun answer(): Long =
         numbers.map { it.trim().toLong() }
-            .let {
-                if (symbol == '+') it.sum() else it.reduce { l, r -> l * r }
-            }
+            .let { if (symbol == '+') it.sum() else it.reduce { l, r -> l * r } }
 
 
     fun rotate(): Column =
@@ -24,12 +22,15 @@ data class Column(
 }
 
 private fun parseColumns(input: String): List<Column> {
-    tailrec fun part(l: Int, r: Int, symbols: String, numbers: List<String>, acc: List<Column>): List<Column> =
-        when {
+    tailrec fun part(l: Int, r: Int, symbols: String, numbers: List<String>, acc: List<Column>): List<Column> {
+        fun column() = Column(numbers.map { it.substring(l, r - 1) }, symbols[l])
+
+        return when {
             l == -1 -> acc
             symbols[l] == ' ' -> part(l - 1, r, symbols, numbers, acc)
-            else -> part(l - 1, l, symbols, numbers, acc + Column(numbers.map { it.substring(l, r - 1) }, symbols[l]))
+            else -> part(l - 1, l, symbols, numbers, acc + column())
         }
+    }
 
     val lines = input.lines()
     val width = lines.maxOf { it.length } + 1 // compensate missing ' ' after last column
