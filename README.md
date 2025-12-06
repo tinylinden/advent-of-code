@@ -14,15 +14,15 @@ puzzles with Kotlin programming language. Let's see what comes out of this.
 
 ### 2025
 
-| Day | Puzzle                                                     | :star: |
-|:---:|------------------------------------------------------------|:------:|
-|  1  | [Secret Entrance](https://adventofcode.com/2025/day/1)     |  2/2   | 
-|  2  | [Gift Shop](https://adventofcode.com/2025/day/2)           |  2/2   | 
-|  3  | [Lobby](https://adventofcode.com/2025/day/3)               |  2/2   | 
-|  4  | [Printing Department](https://adventofcode.com/2025/day/4) |  2/2   | 
-|  5  | [Cafeteria](https://adventofcode.com/2025/day/5)           |  2/2   | 
-|  6  | [Trash Compactor](https://adventofcode.com/2025/day/6)     |  2/2   | 
-|     |                                                            | 12/24  | 
+| Day | Puzzle                                                     |                           :star:                            |
+|:---:|------------------------------------------------------------|:-----------------------------------------------------------:|
+|  1  | [Secret Entrance](https://adventofcode.com/2025/day/1)     | [2/2](src/main/kotlin/eu/tinylinden/aoc/y2025/d01/Day01.kt) | 
+|  2  | [Gift Shop](https://adventofcode.com/2025/day/2)           | [2/2](src/main/kotlin/eu/tinylinden/aoc/y2025/d02/Day02.kt) | 
+|  3  | [Lobby](https://adventofcode.com/2025/day/3)               | [2/2](src/main/kotlin/eu/tinylinden/aoc/y2025/d03/Day03.kt) | 
+|  4  | [Printing Department](https://adventofcode.com/2025/day/4) | [2/2](src/main/kotlin/eu/tinylinden/aoc/y2025/d04/Day04.kt) | 
+|  5  | [Cafeteria](https://adventofcode.com/2025/day/5)           | [2/2](src/main/kotlin/eu/tinylinden/aoc/y2025/d05/Day05.kt) | 
+|  6  | [Trash Compactor](https://adventofcode.com/2025/day/6)     | [2/2](src/main/kotlin/eu/tinylinden/aoc/y2025/d06/Day06.kt) | 
+|     |                                                            |                            12/24                            | 
 
 ### 2024
 
