@@ -20,7 +20,6 @@ data class Column(
     fun rotate(): Column =
         numbers.first()
             .mapIndexed { idx, _ -> numbers.map { it[idx] }.joinToString("") }
-            .filter { it.isNotBlank() }
             .let { copy(numbers = it) }
 }
 
@@ -29,13 +28,13 @@ private fun parseColumns(input: String): List<Column> {
         when {
             l == -1 -> acc
             symbols[l] == ' ' -> part(l - 1, r, symbols, numbers, acc)
-            else -> part(l - 1, l, symbols, numbers, acc + Column(numbers.map { it.substring(l, r) }, symbols[l]))
+            else -> part(l - 1, l, symbols, numbers, acc + Column(numbers.map { it.substring(l, r - 1) }, symbols[l]))
         }
 
     val lines = input.lines()
-    val width = lines.maxOf { it.length }
+    val width = lines.maxOf { it.length } + 1 // compensate missing ' ' after last column
 
     return lines
-        .map { it.padEnd(width, ' ') } // restore ' ' at the end (removed by ide)
+        .map { it.padEnd(width, ' ') } // restore end ' '-es - could be trimmed while ^c^v
         .let { part(width - 1, width, it.last(), it.dropLast(1), emptyList()) }
 }
