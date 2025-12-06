@@ -21,8 +21,8 @@ puzzles with Kotlin programming language. Let's see what comes out of this.
 |  3  | [Lobby](https://adventofcode.com/2025/day/3)               |  2/2   | 
 |  4  | [Printing Department](https://adventofcode.com/2025/day/4) |  2/2   | 
 |  5  | [Cafeteria](https://adventofcode.com/2025/day/5)           |  2/2   | 
-|  6  | [Trash Compactor](https://adventofcode.com/2025/day/6)     |  1/2   | 
-|     |                                                            | 11/24  | 
+|  6  | [Trash Compactor](https://adventofcode.com/2025/day/6)     |  2/2   | 
+|     |                                                            | 12/24  | 
 
 ### 2024
 
