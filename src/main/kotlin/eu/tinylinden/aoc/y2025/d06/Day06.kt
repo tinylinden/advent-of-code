@@ -1,51 +1,41 @@
 package eu.tinylinden.aoc.y2025.d06
 
 fun trashCompactorOne(input: String): Long =
-    parseOne(input).sumOf { it.solution() }
+    parseColumns(input).sumOf { it.answer() }
 
 fun trashCompactorTwo(input: String): Long =
-    parseTwo(input).sumOf { it.solution() }
+    parseColumns(input).sumOf { it.rotate().answer() }
 
-private data class Problem(
-    val numbers: List<Long>,
-    val symbol: String,
+data class Column(
+    val numbers: List<String>,
+    val symbol: Char,
 ) {
-    fun solution(): Long =
-        if (symbol == "+") {
-            numbers.sum()
-        } else { // *
-            numbers.reduce { l, r -> l * r }
+    fun answer(): Long =
+        numbers.map { it.trim().toLong() }
+            .let {
+                if (symbol == '+') it.sum() else it.reduce { l, r -> l * r }
+            }
+
+
+    fun rotate(): Column =
+        numbers.first()
+            .mapIndexed { idx, _ -> numbers.map { it[idx] }.joinToString("") }
+            .filter { it.isNotBlank() }
+            .let { copy(numbers = it) }
+}
+
+private fun parseColumns(input: String): List<Column> {
+    tailrec fun part(l: Int, r: Int, symbols: String, numbers: List<String>, acc: List<Column>): List<Column> =
+        when {
+            l == -1 -> acc
+            symbols[l] == ' ' -> part(l - 1, r, symbols, numbers, acc)
+            else -> part(l - 1, l, symbols, numbers, acc + Column(numbers.map { it.substring(l, r) }, symbols[l]))
         }
+
+    val lines = input.lines()
+    val width = lines.maxOf { it.length }
+
+    return lines
+        .map { it.padEnd(width, ' ') } // restore ' ' at the end (removed by ide)
+        .let { part(width - 1, width, it.last(), it.dropLast(1), emptyList()) }
 }
-
-private fun parseOne(input: String): List<Problem> {
-    val (symbols, numbers) = input.lines()
-        .map { it.trim().split(Regex("\\s+")) }
-        .let { it.last() to it.dropLast(1) }
-
-    return symbols.mapIndexed { idx, symbol ->
-        Problem(numbers.map { it[idx].toLong() }, symbol)
-    }
-}
-
-// ugly, but working
-private fun parseTwo(input: String): List<Problem> {
-    val max = input.lines().maxOf { it.length }
-    val (symbols, numbers) = input.lines()
-        .map { it.padEnd(max, ' ') } // justify all lines
-        .let { it.last() to it.dropLast(1) }
-
-    val parsed = (symbols.mapIndexedNotNull { i, c -> i.takeIf { c != ' ' } } + max) // find columns boundaries
-        .zipWithNext()
-        .map { (l, r) -> numbers.map { it.substring(l, r) } } // separate columns
-        .map { rotateLeft(it) }
-        .zip(symbols.replace(" ", "").chunked(1))
-        .map { (n, s) -> Problem(n.map { it.trim().toLong() }, s) }
-
-    return parsed
-}
-
-private fun rotateLeft(input: List<String>): List<String> =
-    input.first()
-        .mapIndexed { i, _ -> input.map { it[i] }.joinToString("") }
-        .filter { it.isNotBlank() }
