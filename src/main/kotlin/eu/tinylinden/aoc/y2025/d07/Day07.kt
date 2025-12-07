@@ -26,23 +26,15 @@ private data class TachyonManifold(
     }
 
     fun timelines(): Long {
-        tailrec fun part(
-            splitters: List<Set<Int>>,
-            acc: LongArray, // accumulate beams on given index
-        ): LongArray =
-            if (splitters.isEmpty()) {
-                acc
-            } else {
-                splitters.first().forEach {
-                    acc[it - 1] += acc[it]
-                    acc[it + 1] += acc[it]
-                    acc[it] = 0
-                }
-
-                part(splitters.drop(1), acc)
+        val acc = LongArray(width).also { it[source] = 1 }
+        splitters.forEach { line ->
+            line.forEach { splitter ->
+                acc[splitter - 1] += acc[splitter]
+                acc[splitter + 1] += acc[splitter]
+                acc[splitter] = 0
             }
-
-        return part(splitters, LongArray(width).also { it[source] = 1 }).sum()
+        }
+        return acc.sum()
     }
 }
 
