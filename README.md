@@ -22,8 +22,8 @@ puzzles with Kotlin programming language. Let's see what comes out of this.
 |  4  | [Printing Department](https://adventofcode.com/2025/day/4) | [2/2](src/main/kotlin/eu/tinylinden/aoc/y2025/d04/Day04.kt) | 
 |  5  | [Cafeteria](https://adventofcode.com/2025/day/5)           | [2/2](src/main/kotlin/eu/tinylinden/aoc/y2025/d05/Day05.kt) | 
 |  6  | [Trash Compactor](https://adventofcode.com/2025/day/6)     | [2/2](src/main/kotlin/eu/tinylinden/aoc/y2025/d06/Day06.kt) | 
-|  7  | [Laboratories](https://adventofcode.com/2025/day/7)        | [1/2](src/main/kotlin/eu/tinylinden/aoc/y2025/d07/Day07.kt) | 
-|     |                                                            |                            13/24                            | 
+|  7  | [Laboratories](https://adventofcode.com/2025/day/7)        | [2/2](src/main/kotlin/eu/tinylinden/aoc/y2025/d07/Day07.kt) | 
+|     |                                                            |                            14/24                            | 
 
 ### 2024
 

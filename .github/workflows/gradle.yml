@@ -45,6 +45,7 @@ jobs:
           make prepare y=2025 d=04
           make prepare y=2025 d=05
           make prepare y=2025 d=06
+          make prepare y=2025 d=07
       - name: build-and-test
         run : ./gradlew --no-daemon test --tests 'eu.tinylinden.aoc.y2025.*' -Dtestlogger.theme=plain
       - name: test-report

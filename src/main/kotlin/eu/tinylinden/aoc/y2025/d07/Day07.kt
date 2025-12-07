@@ -1,27 +1,48 @@
 package eu.tinylinden.aoc.y2025.d07
 
 fun laboratoriesOne(input: String): Long =
-    parse(input).beams()
+    parse(input).splits()
 
-fun laboratoriesTwo(input: String): Long = 0
+fun laboratoriesTwo(input: String): Long =
+    parse(input).timelines()
 
 private data class TachyonManifold(
     val source: Int,
     val splitters: List<Set<Int>>,
+    val width: Int,
 ) {
-    fun beams(): Long {
-        tailrec fun part(beams: Set<Int>, rest: List<Set<Int>>, acc: Long): Long =
-            if (rest.isEmpty()) {
+    fun splits(): Long {
+        tailrec fun part(beams: Set<Int>, splitters: List<Set<Int>>, acc: Long): Long =
+            if (splitters.isEmpty()) {
                 acc
             } else {
-                val curr = rest.first()
-                val hits = beams intersect curr
+                val hits = beams intersect splitters.first()
                 val split = hits.flatMap { listOf(it - 1, it + 1) }.toSet()
 
-                part(split + (beams - curr), rest.drop(1), acc + hits.size)
+                part(split + (beams - hits), splitters.drop(1), acc + hits.size)
             }
 
         return part(setOf(source), splitters, 0)
+    }
+
+    fun timelines(): Long {
+        tailrec fun part(
+            splitters: List<Set<Int>>,
+            acc: LongArray, // accumulate beams on given index
+        ): LongArray =
+            if (splitters.isEmpty()) {
+                acc
+            } else {
+                splitters.first().forEach {
+                    acc[it - 1] += acc[it]
+                    acc[it + 1] += acc[it]
+                    acc[it] = 0
+                }
+
+                part(splitters.drop(1), acc)
+            }
+
+        return part(splitters, LongArray(width).also { it[source] = 1 }).sum()
     }
 }
 
@@ -34,5 +55,6 @@ private fun parse(input: String): TachyonManifold {
     return TachyonManifold(
         source = lines.first().indexOf('S'),
         splitters = lines.drop(1).mapNotNull { splitters(it) },
+        width = lines.first().length,
     )
 }
