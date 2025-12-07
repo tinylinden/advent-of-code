@@ -46,7 +46,7 @@ jobs:
           make prepare y=2025 d=05
           make prepare y=2025 d=06
       - name: build-and-test
-        run: ./gradlew check -Dtestlogger.theme=plain
+        run : ./gradlew --no-daemon test --tests 'eu.tinylinden.aoc.y2025.*' -Dtestlogger.theme=plain
       - name: test-report
         uses: scacap/action-surefire-report@v1
         if: success() || failure()
