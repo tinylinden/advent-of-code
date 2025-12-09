@@ -21,10 +21,10 @@ private fun circuits(graph: Graph, n: Int): List<Set<Vertex>> {
 
     for (idx in 0..<n) {
         val (left, right) = graph.edges[idx].let { (l, r) -> circuits[l]!! to circuits[r]!! }
-        if (left === right) continue
-
-        left.addAll(right)
-        right.forEach { circuits[it] = left }
+        if (left != right) {
+            left.addAll(right)
+            right.forEach { circuits[it] = left }
+        }
     }
 
     return circuits.values.distinct().sortedByDescending { it.size }
@@ -34,18 +34,19 @@ private fun lastConnection(graph: Graph): Edge {
     val circuits = graph.vertices.associateWith { mutableSetOf(it) }.toMutableMap()
 
     var idx = 0
-    do {
+    var n = circuits.size
+
+    while (n > 1) {
         val (left, right) = graph.edges[idx].let { (l, r) -> circuits[l]!! to circuits[r]!! }
         if (left != right) {
             left.addAll(right)
             right.forEach { circuits[it] = left }
+            n--
         }
-
-        if (circuits.values.distinct().size == 1) break
         idx++
-    } while (true)
+    }
 
-    return graph.edges[idx]
+    return graph.edges[idx - 1]
 }
 
 private data class Graph(
