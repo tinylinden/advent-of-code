@@ -13,44 +13,42 @@ private typealias Edge = Triple<Vertex, Vertex, Long> // distance
 
 // https://en.wikipedia.org/wiki/Kruskal%27s_algorithm
 private fun circuits(graph: Graph, n: Int): List<Set<Vertex>> {
-    val cs = graph.vs.associateWith { mutableSetOf(it) }.toMutableMap()
+    val circuits = graph.vertices.associateWith { mutableSetOf(it) }.toMutableMap()
 
     tailrec fun reduce(idx: Int, acc: Int) {
         if (idx == n) return
 
-        val (l, r) = graph.es[idx]
-        val cl = cs[l]!!
-        if (l in cl && r in cl) {
+        val (left, right) = graph.edges[idx].let { (l, r) -> circuits[l]!! to circuits[r]!! }
+        if (left === right) {
             reduce(idx + 1, acc)
         } else {
-            val cr = cs[r]!!
-            cl.addAll(cr)
-            cr.forEach { cs[it] = cl }
+            left.addAll(right)
+            right.forEach { circuits[it] = left }
             reduce(idx + 1, acc + 1)
         }
     }
 
     reduce(0, 1)
-    return cs.values.distinct().sortedByDescending { it.size }
+    return circuits.values.distinct().sortedByDescending { it.size }
 }
 
 private data class Graph(
-    val vs: List<Vertex>,
+    val vertices: List<Vertex>,
 ) {
-    val es: List<Edge> = es(0, mutableListOf())
+    val edges: List<Edge> = es(0, mutableListOf())
 
     private tailrec fun es(idx: Int, acc: MutableList<Edge>): List<Edge> =
-        if (idx == vs.size) {
+        if (idx == vertices.size) {
             acc.sortedBy { it.third }
         } else {
-            val part = vs.subList(idx + 1, vs.size).map { edge(vs[idx], it) }
+            val part = vertices.subList(idx + 1, vertices.size).map { edge(vertices[idx], it) }
             acc.addAll(part) // faster than List + List
             es(idx + 1, acc)
         }
 }
 
 private fun edge(left: Vertex, right: Vertex): Edge {
-    // https://en.wikipedia.org/wiki/Euclidean_distance - without sqrt
+    // https://en.wikipedia.org/wiki/Euclidean_distance
     val distance = (left.toList() zip right.toList()).sumOf { (l, r) -> (l - r) * (l - r) }
     return Edge(left, right, distance)
 }
