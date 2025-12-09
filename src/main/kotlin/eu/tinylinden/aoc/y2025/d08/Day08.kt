@@ -6,7 +6,11 @@ fun playgroundOne(input: String, n: Int): Long {
     return circuits.take(3).fold(1L) { acc, c -> acc * c.size }
 }
 
-fun playgroundTwo(input: String): Long = 0
+fun playgroundTwo(input: String): Long {
+    val graph = Graph(parse(input))
+    val lastConnection = lastConnection(graph)
+    return lastConnection.first.first * lastConnection.second.first
+}
 
 private typealias Vertex = Triple<Long, Long, Long> // junction box
 private typealias Edge = Triple<Vertex, Vertex, Long> // distance
@@ -24,6 +28,24 @@ private fun circuits(graph: Graph, n: Int): List<Set<Vertex>> {
     }
 
     return circuits.values.distinct().sortedByDescending { it.size }
+}
+
+private fun lastConnection(graph: Graph): Edge {
+    val circuits = graph.vertices.associateWith { mutableSetOf(it) }.toMutableMap()
+
+    var idx = 0
+    do {
+        val (left, right) = graph.edges[idx].let { (l, r) -> circuits[l]!! to circuits[r]!! }
+        if (left != right) {
+            left.addAll(right)
+            right.forEach { circuits[it] = left }
+        }
+
+        if (circuits.values.distinct().size == 1) break
+        idx++
+    } while (true)
+
+    return graph.edges[idx]
 }
 
 private data class Graph(
