@@ -20,8 +20,8 @@ internal class Day08Test {
     companion object {
         @JvmStatic
         fun testCases(): Stream<Arguments> = Stream.of(
-            eOne("2025", "08") { playgroundOne(it) },
-            pOne("2025", "08") { playgroundOne(it) },
+            eOne("2025", "08") { playgroundOne(it, 10) },
+            pOne("2025", "08") { playgroundOne(it, 1000) },
             eTwo("2025", "08") { playgroundTwo(it) },
             pTwo("2025", "08") { playgroundTwo(it) },
         )
