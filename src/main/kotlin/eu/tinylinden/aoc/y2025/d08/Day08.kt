@@ -15,35 +15,29 @@ private typealias Edge = Triple<Vertex, Vertex, Long> // distance
 private fun circuits(graph: Graph, n: Int): List<Set<Vertex>> {
     val circuits = graph.vertices.associateWith { mutableSetOf(it) }.toMutableMap()
 
-    tailrec fun reduce(idx: Int, acc: Int) {
-        if (idx == n) return
-
+    for (idx in 0..<n) {
         val (left, right) = graph.edges[idx].let { (l, r) -> circuits[l]!! to circuits[r]!! }
-        if (left === right) {
-            reduce(idx + 1, acc)
-        } else {
-            left.addAll(right)
-            right.forEach { circuits[it] = left }
-            reduce(idx + 1, acc + 1)
-        }
+        if (left === right) continue
+
+        left.addAll(right)
+        right.forEach { circuits[it] = left }
     }
 
-    reduce(0, 1)
     return circuits.values.distinct().sortedByDescending { it.size }
 }
 
 private data class Graph(
     val vertices: List<Vertex>,
 ) {
-    val edges: List<Edge> = es(0, mutableListOf())
+    val edges: List<Edge> = edges(0, mutableListOf())
 
-    private tailrec fun es(idx: Int, acc: MutableList<Edge>): List<Edge> =
+    private tailrec fun edges(idx: Int, acc: MutableList<Edge>): List<Edge> =
         if (idx == vertices.size) {
             acc.sortedBy { it.third }
         } else {
             val part = vertices.subList(idx + 1, vertices.size).map { edge(vertices[idx], it) }
             acc.addAll(part) // faster than List + List
-            es(idx + 1, acc)
+            edges(idx + 1, acc)
         }
 }
 
