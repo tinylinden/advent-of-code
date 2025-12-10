@@ -14,10 +14,13 @@ repositories {
 }
 
 kotlin {
-    jvmToolchain(17)
+    jvmToolchain(21)
 }
 
 dependencies {
+    implementation(libs.streamex)
+    implementation(libs.jts.core)
+
     testImplementation(libs.strikt.core)
     testImplementation(libs.junit.jupiter.api)
     testImplementation(libs.junit.jupiter.params)
