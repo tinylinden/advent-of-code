@@ -1,10 +1,10 @@
 package eu.tinylinden.aoc.y2025.d09
 
 import eu.tinylinden.aoc.base.graphs.SimpleWeightedGraph
-import one.util.streamex.StreamEx
 import org.locationtech.jts.geom.Geometry
 import org.locationtech.jts.io.WKTReader
 import kotlin.math.abs
+import kotlin.math.max
 
 fun movieTheaterOne(input: String): Long {
     val graph = SimpleWeightedGraph(parse(input), area)
@@ -13,13 +13,14 @@ fun movieTheaterOne(input: String): Long {
 
 fun movieTheaterTwo(input: String): Long {
     val graph = SimpleWeightedGraph(parse(input), area)
-    return redOrGreenOnly(graph).maxOf { it.third }
+    return redOrGreenOnly(graph)
 }
 
 private typealias Tile = Pair<Long, Long>
 private typealias Rectangle = Triple<Tile, Tile, Long>
 
-private fun redOrGreenOnly(graph: SimpleWeightedGraph<Tile, Long>, reader: WKTReader = WKTReader()): List<Rectangle> {
+// no time to invent 2d geometry
+private fun redOrGreenOnly(graph: SimpleWeightedGraph<Tile, Long>, reader: WKTReader = WKTReader()): Long {
     fun geometry(rectangle: Rectangle): Geometry {
         val (xl, yl) = rectangle.first
         val (xr, yr) = rectangle.second
@@ -30,10 +31,10 @@ private fun redOrGreenOnly(graph: SimpleWeightedGraph<Tile, Long>, reader: WKTRe
         .joinToString(prefix = "POLYGON ((", postfix = "))") { (x, y) -> "$x $y" }
         .let { reader.read(it) }
 
-    return StreamEx.of(graph.edges)
-        .parallel()
-        .filter { polygon.contains(geometry(it)) }
-        .toList()
+    return graph.edges
+        .parallelStream()
+        .filter { polygon.covers(geometry(it)) }
+        .reduce(0L, { acc, (_, _, c) -> max(acc, c) }, { l, r -> max(l, r) })
 }
 
 private val area: (Tile, Tile) -> Long = { left, right ->
