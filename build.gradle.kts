@@ -18,6 +18,9 @@ kotlin {
 }
 
 dependencies {
+    implementation(libs.streamex)
+    implementation(libs.jts.core)
+
     testImplementation(libs.strikt.core)
     testImplementation(libs.junit.jupiter.api)
     testImplementation(libs.junit.jupiter.params)
