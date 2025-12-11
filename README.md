@@ -25,6 +25,7 @@ puzzles with Kotlin programming language. Let's see what comes out of this.
 |  7  | [Laboratories](https://adventofcode.com/2025/day/7)        | [2/2](src/main/kotlin/eu/tinylinden/aoc/y2025/d07/Day07.kt) | 
 |  8  | [Playground](https://adventofcode.com/2025/day/8)          | [2/2](src/main/kotlin/eu/tinylinden/aoc/y2025/d08/Day08.kt) | 
 |  9  | [Movie Theater](https://adventofcode.com/2025/day/9)       | [2/2](src/main/kotlin/eu/tinylinden/aoc/y2025/d09/Day09.kt) | 
+| 11  | [Reactor](https://adventofcode.com/2025/day/11)            | [0/2](src/main/kotlin/eu/tinylinden/aoc/y2025/d11/Day11.kt) | 
 |     |                                                            |                            18/24                            | 
 
 ### 2024
