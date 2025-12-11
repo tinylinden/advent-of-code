@@ -18,6 +18,8 @@ kotlin {
 }
 
 dependencies {
+    implementation(libs.jgrapht.core)
+    implementation(libs.jgrapht.io)
     implementation(libs.streamex)
     implementation(libs.jts.core)
 
