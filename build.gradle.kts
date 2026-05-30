@@ -18,6 +18,7 @@ kotlin {
 }
 
 dependencies {
+    implementation(libs.guava)
     implementation(libs.jgrapht.core)
     implementation(libs.jgrapht.io)
     implementation(libs.streamex)
@@ -29,6 +30,7 @@ dependencies {
     testImplementation(libs.jmh.generator.annprocess)
 
     testRuntimeOnly(libs.junit.jupiter.engine)
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
     jmh(libs.jmh.core)
     jmh(libs.jmh.generator.annprocess)

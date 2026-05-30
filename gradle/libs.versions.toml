@@ -1,11 +1,13 @@
 [versions]
-kotlin = "1.9.25"
+kotlin = "2.3.21"
 jts = "1.20.0"
-junit = "5.11.3"
+junit = "6.1.0"
 jmh = "1.37"
 jgrapht = "1.5.2"
+guava = "33.5.0-jre"
 
 [libraries]
+guava = { group = "com.google.guava", name = "guava", version.ref = "guava" }
 streamex = { group = "one.util", name = "streamex", version = "0.8.3" }
 jts-core = { group = "org.locationtech.jts", name = "jts-core", version.ref = "jts" }
 jgrapht-core = { group = "org.jgrapht", name = "jgrapht-core", version.ref = "jgrapht" }
@@ -20,5 +22,5 @@ jmh-generator-annprocess = { group = "org.openjdk.jmh", name = "jmh-generator-an
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-test-logger = { id = "com.adarshr.test-logger", version = "3.1.0" }
+test-logger = { id = "com.adarshr.test-logger", version = "4.0.0" }
 jmh = { id = "me.champeau.jmh", version = "0.7.2" }
